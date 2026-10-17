@@ -31,5 +31,8 @@ npx expo-doctor          # check dependency/config health
 
 ## Architecture
 
-- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes); `app/index.jsx` is the home screen. There is no `_layout.jsx` yet, so Expo Router uses its default root layout.
+- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes). `app/index.jsx` is the welcome screen, and its „Pokračovat" button leads to `app/home.jsx` (the „Dnes" menu with links to the other screens).
+- `app/_layout.jsx` is the root layout: it loads Nunito Sans (400 and 700 only) with `useFonts` and renders a `Stack` with `headerShown: false`.
+- Design tokens (colors, fonts, typography, spacing, radius) are in `constants/theme.js`.
+- Screen conventions (page container, back links, detail screens in folders) are in the `hrave-reflexy` skill; naming and Czech text rules are in the `language-and-naming` skill.
 - App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, light UI style, plugins `expo-router` and `expo-status-bar`.

@@ -55,24 +55,49 @@ When something isn't specified, these decide it:
 - `docs/DESIGN.md` gives the direction and the tokens: Nunito Sans, very rounded shapes
   (pill buttons, 32–48 px cards), an 8 px rhythm, soft layered surfaces instead of
   shadows, and a calm palette.
-- **The palette is not final.** Keep every visual value in `theme/` (colors, typography,
-  spacing and radii, re-exported from `theme/index.js`) and reference it by semantic name
+- **The palette is not final.** Every visual value lives in `constants/theme.js` (`colors`,
+  `fonts`, `typography`, `spacing`, `radius`). Import it (`import { colors, fonts, spacing,
+  radius } from '../constants/theme'`) and reference values by semantic name
   (`colors.primary`, `colors.card`, `spacing.lg`, `radius.pill`). Don't put raw hex values
-  in components. That way a palette change touches one file.
-- If `theme/` doesn't exist yet, create it from DESIGN.md before the first screen. Load
-  Nunito Sans (`npx expo install @expo-google-fonts/nunito-sans expo-font`) in
-  `app/_layout.jsx`.
+  in new code. Older screens still have hardcoded hex values; leave them unless the user
+  asks for a cleanup.
+- Nunito Sans is loaded in `app/_layout.jsx`, but **only the 400 and 700 weights**. Use
+  `fonts.regular` and `fonts.bold`. The `typography` tokens that use medium, semiBold or
+  extraBold fall back to the system font until those weights are added to `useFonts`.
 - Extract shared components (`components/PrimaryButton.jsx`, `Card`, `Chip`,
   `ParentTip` …) the second time a pattern repeats, not before.
 - Visual references and mockups, including the Stitch project, are **inspiration, not a
   spec**. Take the mood, hierarchy and good ideas, and design the actual screen for React
   Native and for the rules above. It's fine, and expected, to diverge.
 
+## Screen conventions in this repo
+
+The user set these while building the first screens. Follow them for new screens:
+
+- **No header.** `app/_layout.jsx` uses `headerShown: false`, so a screen starts at the very
+  top, under the status bar. A root `View` without a style hides its first text behind the
+  clock and battery. Always give the root view the page container:
+  `{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }`. Use a `ScrollView` for
+  long text.
+- **Page title** is bold, 26 px, `colors.text`, aligned left (`alignSelf: 'flex-start'`).
+- **Back link:** every screen except `index`, `home` and `done` ends with
+  `<Link href='/home' style={styles.link}>Zpět</Link>`, aligned right
+  (`alignSelf: 'flex-end'`, `borderBottomWidth: 1`, `marginVertical: 10`). Detail screens
+  go back to their parent instead („Zpět do knihovny" → `/library`).
+- **Buttons that navigate** are `<Link href=… asChild>` around a `Pressable`, so the button
+  keeps its own look.
+- **Detail screens go in a folder** next to their list screen: `app/library.jsx` is the
+  list and `app/library/starfish.jsx` is a detail at `/library/starfish`.
+- **Every new screen needs a way in.** After creating one, ask where its link or button
+  should go (usually the menu on `home`).
+- **Current flow:** `index` (welcome, „Pokračovat") → `home` („Dnes" menu) → `workout`
+  („Dále") → `done` („Hotovo", „Dále") → `calendar`.
+
 ## Workflow for a feature or screen
 
 1. **Understand:** find the screen or rule in `docs/PROJECT_BRIEF.md`. If it's missing or
    ambiguous, ask the user in Czech before coding. Briefly check what already exists in
-   `app/`, `components/` and `theme/`.
+   `app/`, `components/` and `constants/theme.js`.
 2. **Plan small:** decide the route (top-level `app/`, short English file names such as
    `app/today.jsx`, `app/player.jsx`, `app/library/[id].jsx`), which components to reuse,
    and what data it needs. In phase 1, data lives on the device. Put the program and
@@ -91,8 +116,9 @@ When something isn't specified, these decide it:
    - the player keeps its position when paused or when info is opened
    - all text is Czech and uses vykání
    - no child data is collected
-5. **Verify:** `npx expo export --platform web` must build. There are no tests or lint
-   yet. If the user wants to see it, use `npm run emulator` plus `npm run android` (or the
+5. **Verify:** `npx expo export --platform android --output-dir <scratchpad>/android-export`
+   must build. Web export doesn't work, because `react-dom` and `react-native-web` aren't
+   installed; don't install them without asking. There are no tests or lint yet. If the user wants to see it, use `npm run emulator` plus `npm run android` (or the
    `run` skill) and take a screenshot.
 6. **Hand back:** summarize in Czech what was built, what is mocked and what is still
    open. Don't commit unless asked.

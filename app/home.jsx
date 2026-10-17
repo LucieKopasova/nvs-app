@@ -9,7 +9,14 @@ const Home = () => {
 
       <Text style={styles.title}>Dnes</Text>
 
-      
+      <Link href="/workout" asChild>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>
+            Cvičíme dnes
+          </Text>
+        </Pressable>
+      </Link>
+
       <Link href="/calendar" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>

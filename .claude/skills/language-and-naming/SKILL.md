@@ -101,7 +101,7 @@ abbreviations nobody knows. Glossary for this app:
 | Czech | In code |
 | --- | --- |
 | cvik | `exercise` |
-| cvičení (dnešní program) | `session` / `dailyProgram` |
+| cvičení (dnešní program) | `workout` |
 | série | `series` |
 | den | `day` |
 | primární reflex | `reflex` |
