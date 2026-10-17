@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
-import { colors, fonts, spacing, radius } from '../constants/theme'
+import { useColors, fonts, spacing, radius } from '../constants/theme'
 
 const Done = () => {
+  const styles = getStyles(useColors())
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Hotovo</Text>
@@ -19,30 +20,31 @@ const Done = () => {
 
 export default Done
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontFamily: fonts.bold,
-    fontSize: 34,
-    color: colors.text,
-    textAlign: 'center',
-  },
-  button: {
-    minHeight: 56,
-    marginTop: spacing.lg,
-    paddingHorizontal: spacing.lg,
-    borderRadius: radius.pill,
-    backgroundColor: colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fonts.bold,
-    fontSize: 15,
-    color: colors.onPrimary,
-  },
-})
+const getStyles = (palette) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      paddingHorizontal: 20,
+    },
+    title: {
+      fontFamily: fonts.bold,
+      fontSize: 34,
+      color: palette.text,
+      textAlign: 'center',
+    },
+    button: {
+      minHeight: 56,
+      marginTop: spacing.lg,
+      paddingHorizontal: spacing.lg,
+      borderRadius: radius.pill,
+      backgroundColor: palette.primary,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    buttonText: {
+      fontFamily: fonts.bold,
+      fontSize: 15,
+      color: palette.onPrimary,
+    },
+  })

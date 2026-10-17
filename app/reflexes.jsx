@@ -1,8 +1,9 @@
 import { StyleSheet, View, Text, ScrollView } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router'
+import { useColors } from '../constants/theme'
 
 const Reflexes = () => {
+  const styles = getStyles(useColors())
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.container}>
       <Text style={styles.title}>Primární reflexy</Text>
@@ -113,48 +114,40 @@ const Reflexes = () => {
           a pásek a bývá spojován i s nočním pomočováním po 5. roce věku.
         </Text>
       </View>
-
-      <Link href="/home" style={styles.link}>
-        Zpět
-      </Link>
     </ScrollView>
   )
 }
 
 export default Reflexes
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  container: {
-    paddingHorizontal: 20,
-    paddingVertical: 40,
-  },
-  title: {
-    fontFamily: 'NunitoSans_700Bold',
-    fontSize: 26,
-    color: '#303F49',
-    textAlign: 'center',
-  },
-  block: {
-    marginTop: 8,
-  },
-  subtitle: {
-    fontFamily: 'NunitoSans_700Bold',
-    fontSize: 19,
-    color: '#303F49',
-  },
-  text: {
-    fontFamily: 'NunitoSans_400Regular',
-    fontSize: 17,
-    color: '#42483E',
-    marginTop: 8,
-    marginBottom: 16,
-  },
-  link: {
-    marginVertical: 10,
-    borderBottomWidth: 1,
-    alignSelf: 'flex-end',
-  },
-})
+const getStyles = (palette) =>
+  StyleSheet.create({
+    screen: {
+      flex: 1,
+      backgroundColor: palette.background,
+    },
+    container: {
+      paddingHorizontal: 20,
+      paddingVertical: 40,
+    },
+    title: {
+      fontFamily: 'NunitoSans_700Bold',
+      fontSize: 26,
+      color: palette.text,
+      textAlign: 'center',
+    },
+    block: {
+      marginTop: 8,
+    },
+    subtitle: {
+      fontFamily: 'NunitoSans_700Bold',
+      fontSize: 19,
+      color: palette.text,
+    },
+    text: {
+      fontFamily: 'NunitoSans_400Regular',
+      fontSize: 17,
+      color: palette.textAlt,
+      marginTop: 8,
+      marginBottom: 16,
+    },
+  })

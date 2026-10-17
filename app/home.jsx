@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import logo from '../assets/img/logo.png'
+import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { Link } from 'expo-router'
+import { useColors } from '../constants/theme'
 
 const Home = () => {
+  const styles = getStyles(useColors())
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Dnes</Text>
@@ -55,48 +55,49 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    gap: 15,
-  },
-  logo: {
-    width: 280,
-    height: 280,
-    resizeMode: 'contain',
-    marginBottom: 24,
-  },
-  title: {
-    fontFamily: 'NunitoSans_700Bold',
-    fontSize: 26,
-    color: '#303F49',
-    alignSelf: 'flex-start',
-  },
-  subtitle: {
-    fontFamily: 'NunitoSans_400Regular',
-    fontSize: 17,
-    color: '#42483E',
-    textAlign: 'center',
-    marginTop: 8,
-    marginBottom: 32,
-  },
-  button: {
-    alignSelf: 'stretch',
-    minHeight: 56,
-    paddingHorizontal: 24,
-    borderRadius: 9999,
-    backgroundColor: '#35AFCB',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '0 6px 16px -4px rgba(53, 175, 203, 0.35)',
-  },
-  buttonText: {
-    fontFamily: 'NunitoSans_700Bold',
-    fontSize: 15,
-    color: '#FFFFFF',
-  },
-})
+const getStyles = (palette) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: palette.background,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingHorizontal: 20,
+      gap: 15,
+    },
+    logo: {
+      width: 280,
+      height: 280,
+      resizeMode: 'contain',
+      marginBottom: 24,
+    },
+    title: {
+      fontFamily: 'NunitoSans_700Bold',
+      fontSize: 26,
+      color: palette.text,
+      alignSelf: 'flex-start',
+    },
+    subtitle: {
+      fontFamily: 'NunitoSans_400Regular',
+      fontSize: 17,
+      color: palette.textAlt,
+      textAlign: 'center',
+      marginTop: 8,
+      marginBottom: 32,
+    },
+    button: {
+      alignSelf: 'stretch',
+      minHeight: 56,
+      paddingHorizontal: 24,
+      borderRadius: 9999,
+      backgroundColor: palette.primary,
+      alignItems: 'center',
+      justifyContent: 'center',
+      boxShadow: '0 6px 16px -4px rgba(53, 175, 203, 0.35)',
+    },
+    buttonText: {
+      fontFamily: 'NunitoSans_700Bold',
+      fontSize: 15,
+      color: palette.onPrimary,
+    },
+  })

@@ -25,17 +25,17 @@ colors in one theme file, and never hardcode hex values in components.
 
 **Current working palette** (Stitch design system):
 
-| Role          | Value                  | Use                                                         |
-| ------------- | ---------------------- | ----------------------------------------------------------- |
-| Primary       | `#35AFCB` (cyan-teal)  | primary buttons, active controls, progress, timer fill      |
-| Secondary     | `#788A6D` (sage)       | info badges, tags, secondary states, active chips           |
-| Tertiary      | `#E9B69A` (apricot)    | encouragement, completion, gentle highlights                |
-| Background    | `#FBF7EF` (warm linen) | screen background                                           |
-| Card          | `#FFFDF8`              | cards and raised surfaces                                   |
-| Muted surface | `#E8EDE3`              | tracks, segmented controls, tip callouts, secondary buttons |
-| Beige         | `#E8E1D5`              | inactive chips, recessed or completed items                 |
-| Text          | `#303F49` / `#42483E`  | body text and icons. Never use pure black.                  |
-| Error         | `#BA1A1A`              | errors                                                      |
+| Role          | Value                 | Use                                                         |
+| ------------- | --------------------- | ----------------------------------------------------------- |
+| Primary       | `#35AFCB` (cyan-teal) | primary buttons, active controls, progress, timer fill      |
+| Secondary     | `#788A6D` (sage)      | info badges, tags, secondary states, active chips           |
+| Tertiary      | `#E9B69A` (apricot)   | encouragement, completion, gentle highlights                |
+| Background    | `#FFFFFF` (white)     | screen background, the same on every screen                 |
+| Card          | `#FFFDF8`             | cards and raised surfaces                                   |
+| Muted surface | `#E8EDE3`             | tracks, segmented controls, tip callouts, secondary buttons |
+| Beige         | `#E8E1D5`             | inactive chips, recessed or completed items                 |
+| Text          | `#303F49` / `#42483E` | body text and icons. Never use pure black.                  |
+| Error         | `#BA1A1A`             | errors                                                      |
 
 **Alternatives explored in the prompts:**
 
@@ -93,6 +93,24 @@ Whatever palette wins, the colors must keep good contrast (body text at least WC
   `0 8px 24px -4px rgba(48,63,73,0.06), 0 2px 6px -1px rgba(48,63,73,0.03)`.
 - Separate elements with 1 px hairline borders, for example
   `rgba(120,138,109,0.15)`, instead of dark dividers.
+
+## Navigation and headers — planned direction
+
+Agreed with the user, not built yet (only the avatar exists). Build it step by step when
+the screens get there:
+
+- **Bottom tab bar** as the main navigation (Dnes · Kalendář · Knihovna · Poznámky). It
+  replaces the button menu on „Dnes".
+- **Top-level screens** (the tabs) have no back arrow. The header has the **avatar on the
+  left** (primary circle with a white outline person icon). The avatar is for **switching
+  between child profiles** (one parent, several children), not a way to Nastavení. In phase 1 it is only a placeholder
+  with no action. A large title or a short greeting fits here.
+- **Detail screens** (exercise detail, one note, a guide chapter) get the standard back
+  arrow on the left of the header. The bottom „Zpět" links go away.
+- **Exercise player** has no header: the video goes to the top with floating round
+  buttons (back, more) over it.
+- **Overflow menu** (`⋮` on Android, `⋯` on iOS) only when a screen has 2+ secondary
+  actions. No empty menu „just in case".
 
 ## Components
 

@@ -15,6 +15,12 @@ section 5 are a starting point that can change during implementation.
   integration of **primary (primitive) reflexes**.
 - **Users:** the **parent** is the main user and operates the app. The **child** mainly
   watches the exercise videos.
+- **Child profiles (phase 2):** one parent with several children uses one app. Each child
+  has their own profile with their own program progress, and the parent switches between
+  them with the avatar in the header. A profile holds **only a nickname** (it doesn't have
+  to be the real name) **and an avatar picture**, nothing else. They are built in
+  phase 2; phase 1 only prepares for them (avatar placeholder, records that can later be
+  assigned to a profile).
 - **Feel:** trustworthy and clear for adults, friendly and safe for small children.
   It should feel like a quality tool for parents, **not a game for toddlers**. Exercise is
   framed as a calm daily ritual, not as therapy.
@@ -26,7 +32,8 @@ section 5 are a starting point that can change during implementation.
   revisited. Many strings quoted in section 5 come from mockups in tykání. Convert them to
   vykání when implementing.
 - **No data about children.** The app never asks for or stores a child's name, age or any
-  other child data, in either phase.
+  other child data. The one exception is the child profile: a nickname and an avatar
+  picture, nothing more (no age, birth date, photo or health data).
 
 ## 2. Phases
 
@@ -36,7 +43,7 @@ but don't implement them early.
 | Phase                           | Scope                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1 — Basic version (current)** | Core app on the device: Home / Today, exercise player (rest, completion), program progress, calendar and manual records, notes, exercise library, reflex guide, settings (reminders). Data is stored **locally on the device**. Exercise **videos are bundled in the app**. There is **no backend, no login and no gamification**. |
-| **2 — Later**                   | **Backend and accounts:** sign-in, registration, password reset and data sync. **Videos are served from the backend.** **Gamification:** motivating elements for the family; the form is not designed yet. Other extensions as decided.                                                                                            |
+| **2 — Later**                   | **Backend and accounts:** sign-in, registration, password reset and data sync. **Videos are served from the backend.** **Child profiles:** one parent, several children, switched via the avatar. **Gamification:** motivating elements for the family; the form is not designed yet. Other extensions as decided.                 |
 
 Keep phase 1 code ready for phase 2:
 
@@ -94,7 +101,8 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
 
 ### Home — „Dnes"
 
-- Header „Hravé reflexy" with a hamburger menu on the right.
+- Header with the avatar on the left. The avatar is for switching between child profiles;
+  in phase 1 it is only a placeholder. See „Navigation and headers" in [DESIGN.md](DESIGN.md).
 - Heading „Dnes" with a short warm sentence (for example „3. den z cyklu").
 - Prominent primary button **„Cvičíme dnes"** with a play icon. This is the main action.
 - A list of **7 day cards** („1. den" … „7. den"). Each card has a thumbnail, the day label
@@ -102,7 +110,8 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
   - completed: soft green, no checkmark
   - current day: warm cream or apricot accent
   - upcoming: neutral beige, still readable
-- **Menu:** Kalendář, Poznámky, Průvodce reflexy, Knihovna cviků, Nastavení.
+- **Menu:** Kalendář, Poznámky, Průvodce reflexy, Knihovna cviků, Nastavení. For now it is
+  a list of buttons; the plan is a bottom tab bar.
 
 ### Series detail (concept)
 
@@ -199,6 +208,8 @@ yet.
 
 - **Settings:** reminder enabled and reminder time.
 - **Account (family)** (phase 2): e-mail and password. Settings and records sync to it.
+- **Child profile** (phase 2): nickname and avatar picture only. Exercise
+  records and program progress belong to a profile.
 - **Program:** 12 series. Each series has 7 days and each day has 4 exercises.
 - **Exercise:** id, name, short description, video (a bundled asset in phase 1 and a URL in
   phase 2), instructions for the parent,

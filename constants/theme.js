@@ -1,18 +1,45 @@
 // Design tokens from docs/DESIGN.md. The palette is not final — change colors here only.
 
+import { useColorScheme } from 'react-native'
+
+// Both palettes have the same keys. `dark` is a first draft.
 export const colors = {
-  primary: '#35AFCB',
-  secondary: '#788A6D',
-  tertiary: '#E9B69A',
-  background: '#FBF7EF',
-  card: '#FFFDF8',
-  mutedSurface: '#E8EDE3',
-  beige: '#E8E1D5',
-  text: '#303F49',
-  textAlt: '#42483E',
-  onPrimary: '#FFFFFF',
-  error: '#BA1A1A',
-  hairline: 'rgba(120,138,109,0.15)',
+  light: {
+    primary: '#35AFCB',
+    secondary: '#788A6D',
+    tertiary: '#E9B69A',
+    background: '#FFFFFF',
+    card: '#FFFDF8',
+    mutedSurface: '#E8EDE3',
+    beige: '#E8E1D5',
+    text: '#303F49',
+    textAlt: '#42483E',
+    onPrimary: '#FFFFFF',
+    error: '#BA1A1A',
+    hairline: 'rgba(120,138,109,0.15)',
+  },
+  dark: {
+    primary: '#5BC3DB',
+    secondary: '#9BAD8F',
+    tertiary: '#D9A488',
+    background: '#1C1F1D',
+    card: '#262A27',
+    mutedSurface: '#2F3530',
+    beige: '#3A3630',
+    text: '#EDEAE3',
+    textAlt: '#C9CCC2',
+    onPrimary: '#0F2B33',
+    error: '#FFB4AB',
+    hairline: 'rgba(155,173,143,0.2)',
+  },
+}
+
+// Returns the light or dark palette, depending on the phone's setting.
+// Note: app.json has "userInterfaceStyle": "light" during development, so this is
+// always light for now. In production it will be "automatic".
+export const useColors = () => {
+  const scheme = useColorScheme()
+  return scheme === 'dark' ? colors.dark : colors.light
 }
 
 // On Android a custom font ignores fontWeight, so each weight is its own family.

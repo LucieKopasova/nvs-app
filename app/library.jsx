@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
-import { colors, fonts, spacing, radius } from '../constants/theme'
+import { useColors, fonts, spacing, radius } from '../constants/theme'
 
 const library = () => {
+  const styles = getStyles(useColors())
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Knihovna cviků</Text>
@@ -26,57 +27,49 @@ const library = () => {
           <Text style={styles.cardTitle}>Kočičí hřbet</Text>
         </View>
       </View>
-
-      <Link href="/home" style={styles.link}>
-        Zpět
-      </Link>
     </View>
   )
 }
 
 export default library
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontFamily: 'NunitoSans_700Bold',
-    fontSize: 26,
-    color: '#303F49',
-    alignSelf: 'flex-start',
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-    marginTop: spacing.lg,
-  },
-  card: {
-    width: '30%',
-    padding: spacing.xs,
-    borderRadius: radius.default,
-    backgroundColor: colors.card,
-    borderWidth: 1,
-    borderColor: colors.hairline,
-  },
-  thumbnail: {
-    aspectRatio: 1,
-    borderRadius: radius.sm,
-    backgroundColor: colors.mutedSurface,
-  },
-  cardTitle: {
-    fontFamily: fonts.bold,
-    fontSize: 13,
-    color: colors.text,
-    textAlign: 'center',
-    marginTop: spacing.xs,
-  },
-  link: {
-    marginVertical: 10,
-    borderBottomWidth: 1,
-    alignSelf: 'flex-end',
-  },
-})
+const getStyles = (palette) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      paddingHorizontal: 20,
+    },
+    title: {
+      fontFamily: 'NunitoSans_700Bold',
+      fontSize: 26,
+      color: palette.text,
+      alignSelf: 'flex-start',
+    },
+    grid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: spacing.sm,
+      marginTop: spacing.lg,
+    },
+    card: {
+      width: '30%',
+      padding: spacing.xs,
+      borderRadius: radius.default,
+      backgroundColor: palette.card,
+      borderWidth: 1,
+      borderColor: palette.hairline,
+    },
+    thumbnail: {
+      aspectRatio: 1,
+      borderRadius: radius.sm,
+      backgroundColor: palette.mutedSurface,
+    },
+    cardTitle: {
+      fontFamily: fonts.bold,
+      fontSize: 13,
+      color: palette.text,
+      textAlign: 'center',
+      marginTop: spacing.xs,
+    },
+  })

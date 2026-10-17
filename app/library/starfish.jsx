@@ -6,10 +6,10 @@ import {
   useWindowDimensions,
 } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router'
-import { colors, fonts, spacing, radius } from '../../constants/theme'
+import { useColors, fonts, spacing } from '../../constants/theme'
 
 const Starfish = () => {
+  const styles = getStyles(useColors())
   // Screen height, so the video placeholder can take one third of it
   const { height } = useWindowDimensions()
 
@@ -41,10 +41,6 @@ const Starfish = () => {
           Dítě leží nebo sedí a dospělý ho pomalu a rytmicky houpe, například v
           dece, na velkém míči nebo v náruči. Cílem je, aby se dítě uvolnilo.
         </Text>
-
-        <Link href="/library" style={styles.link}>
-          Zpět do knihovny
-        </Link>
       </View>
     </ScrollView>
   )
@@ -52,38 +48,34 @@ const Starfish = () => {
 
 export default Starfish
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  video: {
-    backgroundColor: colors.mutedSurface,
-  },
-  content: {
-    paddingHorizontal: 20,
-    paddingVertical: spacing.lg,
-  },
-  title: {
-    fontFamily: fonts.bold,
-    fontSize: 26,
-    color: colors.text,
-  },
-  subtitle: {
-    fontFamily: fonts.bold,
-    fontSize: 19,
-    color: colors.text,
-    marginTop: spacing.xs,
-  },
-  text: {
-    fontFamily: fonts.regular,
-    fontSize: 17,
-    color: colors.textAlt,
-    marginTop: spacing.xs,
-    marginBottom: spacing.md,
-  },
-  link: {
-    marginVertical: 10,
-    borderBottomWidth: 1,
-    alignSelf: 'flex-end',
-  },
-})
+const getStyles = (palette) =>
+  StyleSheet.create({
+    screen: {
+      flex: 1,
+    },
+    video: {
+      backgroundColor: palette.mutedSurface,
+    },
+    content: {
+      paddingHorizontal: 20,
+      paddingVertical: spacing.lg,
+    },
+    title: {
+      fontFamily: fonts.bold,
+      fontSize: 26,
+      color: palette.text,
+    },
+    subtitle: {
+      fontFamily: fonts.bold,
+      fontSize: 19,
+      color: palette.text,
+      marginTop: spacing.xs,
+    },
+    text: {
+      fontFamily: fonts.regular,
+      fontSize: 17,
+      color: palette.textAlt,
+      marginTop: spacing.xs,
+      marginBottom: spacing.md,
+    },
+  })

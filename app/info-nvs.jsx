@@ -1,8 +1,9 @@
 import { StyleSheet, View, Text } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router'
+import { useColors } from '../constants/theme'
 
 const InfoNvs = () => {
+  const styles = getStyles(useColors())
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Neurovývojová stimulace</Text>
@@ -18,37 +19,30 @@ const InfoNvs = () => {
         mozek vytváří nová propojení a dítě se může lépe soustředit, pohybovat
         jistěji a být klidnější.
       </Text>
-      <Link href="/home" style={styles.link}>
-        Zpět
-      </Link>
     </View>
   )
 }
 
 export default InfoNvs
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontFamily: 'NunitoSans_700Bold',
-    fontSize: 26,
-    color: '#303F49',
-    textAlign: 'center',
-  },
-  text: {
-    fontFamily: 'NunitoSans_400Regular',
-    fontSize: 17,
-    color: '#42483E',
-    marginTop: 8,
-    marginBottom: 32,
-  },
-  link: {
-    marginVertical: 10,
-    borderBottomWidth: 1,
-    alignSelf: 'flex-end',
-  },
-})
+const getStyles = (palette) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: palette.background,
+      justifyContent: 'center',
+      paddingHorizontal: 20,
+    },
+    title: {
+      fontFamily: 'NunitoSans_700Bold',
+      fontSize: 26,
+      color: palette.text,
+      textAlign: 'center',
+    },
+    text: {
+      fontFamily: 'NunitoSans_400Regular',
+      fontSize: 17,
+      color: palette.textAlt,
+      marginTop: 8,
+      marginBottom: 32,
+    },
+  })

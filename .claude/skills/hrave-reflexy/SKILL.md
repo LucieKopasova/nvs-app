@@ -47,7 +47,9 @@ When something isn't specified, these decide it:
 5. **Czech, warm, plain language, vykání.** Every visible string is Czech and addresses
    the parent formally („Vyberte si…", „Vítejte"). Mockup texts are often in tykání, so
    convert them.
-   Never ask for or store any data about children.
+   Never ask for or store any data about children. The only exception is the child profile
+   (phase 2, switched via the avatar): a nickname and an avatar picture, nothing more.
+   Phase 1 only prepares for it.
 6. **Don't invent features.** Phase 1 has no accounts, child profiles, subscriptions or
    library filters. If something seems missing, ask; don't add it.
 
@@ -75,16 +77,26 @@ radius } from '../constants/theme'`) and reference values by semantic name
 
 The user set these while building the first screens. Follow them for new screens:
 
-- **No header.** `app/_layout.jsx` uses `headerShown: false`, so a screen starts at the very
-  top, under the status bar. A root `View` without a style hides its first text behind the
-  clock and battery. Always give the root view the page container:
+- **Header from the Stack.** `app/_layout.jsx` shows the native header; each screen's
+  Czech title is set there in a `<Stack.Screen name=… options={{ title: … }} />`. Add a line
+  for every new screen. `index` (welcome) has no header. `home` has the **avatar** in
+  `headerLeft` (primary circle, white Ionicons `person-outline`). The avatar is for
+  switching between child profiles (one parent, several children, each with their own
+  progress), not a way to Nastavení; for now it is a placeholder with no action.
+- **Navigation direction is agreed, partly built:** the header with a back arrow and the
+  avatar on „Dnes" are done. The bottom tab bar and the headerless player are not built
+  yet. See „Navigation and headers" in `docs/DESIGN.md`. Don't build them unasked; just
+  don't work against them.
+- **Page container:** give the root view
   `{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }`. Use a `ScrollView` for
-  long text.
-- **Page title** is bold, 26 px, `colors.text`, aligned left (`alignSelf: 'flex-start'`).
-- **Back link:** every screen except `index`, `home` and `done` ends with
-  `<Link href='/home' style={styles.link}>Zpět</Link>`, aligned right
-  (`alignSelf: 'flex-end'`, `borderBottomWidth: 1`, `marginVertical: 10`). Detail screens
-  go back to their parent instead („Zpět do knihovny" → `/library`).
+  long text. A screen without a header (`index`, later the player) starts under the status
+  bar, so keep its first text clear of the clock and battery.
+- **Page title** is bold, 26 px, `palette.text`, aligned left (`alignSelf: 'flex-start'`).
+- **Colors:** get the palette with `useColors()` from `constants/theme.js` (light or dark,
+  by the phone's setting) and build styles inside the component:
+  `const styles = getStyles(useColors())` with `const getStyles = (palette) => StyleSheet.create({…})`.
+- **Going back:** the header back arrow (set up in `app/_layout.jsx`, every screen except
+  `index`) is the only way back. Don't add „Zpět" links to the page body.
 - **Buttons that navigate** are `<Link href=… asChild>` around a `Pressable`, so the button
   keeps its own look.
 - **Detail screens go in a folder** next to their list screen: `app/library.jsx` is the
@@ -108,8 +120,11 @@ The user set these while building the first screens. Follow them for new screens
    - `SafeAreaView` from `react-native-safe-area-context`
    - `ScrollView` or `FlatList` for long content
    - `Pressable` with a subtle pressed state
-   - icons from `@expo/vector-icons` (`MaterialIcons`)
-   - new packages only via `npx expo install` (see `AGENTS.md`)
+   - icons from `@expo/vector-icons` (installed; outline icons, e.g. Ionicons
+     `person-outline`, MaterialIcons)
+   - new packages only via `npx expo install` (see `AGENTS.md`). The project has an
+     unrelated peer conflict (`react-dom` vs `react`), so a plain install fails with
+     ERESOLVE; use `npx expo install <pkg> -- --legacy-peer-deps`.
 4. **Check the rules:**
    - nothing from phase 2 has slipped in (login, gamification)
    - upcoming days don't look disabled

@@ -35,4 +35,4 @@ npx expo-doctor          # check dependency/config health
 - `app/_layout.jsx` is the root layout: it loads Nunito Sans (400 and 700 only) with `useFonts` and renders a `Stack` with `headerShown: false`.
 - Design tokens (colors, fonts, typography, spacing, radius) are in `constants/theme.js`.
 - Screen conventions (page container, back links, detail screens in folders) are in the `hrave-reflexy` skill; naming and Czech text rules are in the `language-and-naming` skill.
-- App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, light UI style, plugins `expo-router` and `expo-status-bar`.
+- App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, `userInterfaceStyle: "light"` (set for development; production will use `"automatic"` so the dark palette in `constants/theme.js` turns on), plugins `expo-router` and `expo-status-bar`.
