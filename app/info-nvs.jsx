@@ -5,7 +5,7 @@ import { Link } from 'expo-router'
 const InfoNvs = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Nerovovyvojová stimulace</Text>
+      <Text style={styles.title}>Neurovývojová stimulace</Text>
 
        <Text style={styles.text}>
               Neuro-vývojová stimulace (NVS) je metoda, která pomocí jednoduchého pohybu podporuje správný vývoj dítěte. Pohyb miminka v prvních měsících života pomáhá v mozku vytvářet propojení, která dítě později potřebuje k učení, řeči a soustředění.
@@ -14,7 +14,7 @@ const InfoNvs = () => {
 
               NVS tvoří krátké cviky, které dítě dělá pravidelně doma s rodičem. Díky opakování si mozek vytváří nová propojení a dítě se může lépe soustředit, pohybovat jistěji a být klidnější.
         </Text>
-        <Link href='/' style={styles.link}>Zpět</Link>
+        <Link href='/home' style={styles.link}>Zpět</Link>
     </View>
   )
 }
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
   link:{
     marginVertical: 10,
     borderBottomWidth: 1,
-    alignSelf: 'center'
+    alignSelf: 'flex-end'
   }
 })

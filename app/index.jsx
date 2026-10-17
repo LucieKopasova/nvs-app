@@ -14,7 +14,7 @@ const Home = () => {
         Neurovývojová stimulace s úsměvem
       </Text>
 
-      <Link href="/infoNvs" asChild>
+      <Link href="/home" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Pokračovat</Text>
         </Pressable>
