@@ -14,6 +14,7 @@ The program has 12 series, each 7 days long.
 It should feel like a **quality tool for parents and a calm shared ritual**, not a clinic.
 
 **We build in phases** (section 2 of the brief):
+
 - **Phase 1 (now)** is the basic app, running locally on the device with **no backend, no
   login and no gamification**.
 - **Phase 2 (later)** adds the backend, accounts/login and gamification.
@@ -57,7 +58,7 @@ When something isn't specified, these decide it:
   shadows, and a calm palette.
 - **The palette is not final.** Every visual value lives in `constants/theme.js` (`colors`,
   `fonts`, `typography`, `spacing`, `radius`). Import it (`import { colors, fonts, spacing,
-  radius } from '../constants/theme'`) and reference values by semantic name
+radius } from '../constants/theme'`) and reference values by semantic name
   (`colors.primary`, `colors.card`, `spacing.lg`, `radius.pill`). Don't put raw hex values
   in new code. Older screens still have hardcoded hex values; leave them unless the user
   asks for a cleanup.

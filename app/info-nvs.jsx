@@ -7,14 +7,20 @@ const InfoNvs = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Neurovývojová stimulace</Text>
 
-       <Text style={styles.text}>
-              Neuro-vývojová stimulace (NVS) je metoda, která pomocí jednoduchého pohybu podporuje správný vývoj dítěte. Pohyb miminka v prvních měsících života pomáhá v mozku vytvářet propojení, která dítě později potřebuje k učení, řeči a soustředění.
-
-              Pokud tento vývoj neproběhne úplně, například kvůli náročnému porodu nebo nemoci, může mít dítě později potíže se soustředěním, koordinací, psaním, čtením nebo chováním.
-
-              NVS tvoří krátké cviky, které dítě dělá pravidelně doma s rodičem. Díky opakování si mozek vytváří nová propojení a dítě se může lépe soustředit, pohybovat jistěji a být klidnější.
-        </Text>
-        <Link href='/home' style={styles.link}>Zpět</Link>
+      <Text style={styles.text}>
+        Neuro-vývojová stimulace (NVS) je metoda, která pomocí jednoduchého
+        pohybu podporuje správný vývoj dítěte. Pohyb miminka v prvních měsících
+        života pomáhá v mozku vytvářet propojení, která dítě později potřebuje k
+        učení, řeči a soustředění. Pokud tento vývoj neproběhne úplně, například
+        kvůli náročnému porodu nebo nemoci, může mít dítě později potíže se
+        soustředěním, koordinací, psaním, čtením nebo chováním. NVS tvoří krátké
+        cviky, které dítě dělá pravidelně doma s rodičem. Díky opakování si
+        mozek vytváří nová propojení a dítě se může lépe soustředit, pohybovat
+        jistěji a být klidnější.
+      </Text>
+      <Link href="/home" style={styles.link}>
+        Zpět
+      </Link>
     </View>
   )
 }
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
-   title: {
+  title: {
     fontFamily: 'NunitoSans_700Bold',
     fontSize: 26,
     color: '#303F49',
@@ -40,9 +46,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 32,
   },
-  link:{
+  link: {
     marginVertical: 10,
     borderBottomWidth: 1,
-    alignSelf: 'flex-end'
-  }
+    alignSelf: 'flex-end',
+  },
 })

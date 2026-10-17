@@ -7,12 +7,12 @@ description: Language and naming rules for this repo — every user-facing text 
 
 One simple rule: **what the parent sees is Czech, everything else is English.**
 
-| Czech (spisovná čeština) | English |
-| --- | --- |
-| texts in `<Text>`, buttons, titles, headers, tab labels | file and folder names |
-| error and empty-state messages, alerts, notifications | components, functions, variables, hooks |
-| exercise names and descriptions in `data/` (the values) | object keys in `data/`, route paths |
-| `accessibilityLabel` and `accessibilityHint` | comments, console logs, commit messages, docs |
+| Czech (spisovná čeština)                                | English                                       |
+| ------------------------------------------------------- | --------------------------------------------- |
+| texts in `<Text>`, buttons, titles, headers, tab labels | file and folder names                         |
+| error and empty-state messages, alerts, notifications   | components, functions, variables, hooks       |
+| exercise names and descriptions in `data/` (the values) | object keys in `data/`, route paths           |
+| `accessibilityLabel` and `accessibilityHint`            | comments, console logs, commit messages, docs |
 
 ## Part 1: Czech texts in the app
 
@@ -77,41 +77,41 @@ function pluralize(count, one, few, many) {
 
 ### Naming conventions
 
-| What | Convention | Example |
-| --- | --- | --- |
-| Route files in `app/` | lowercase, kebab-case (it becomes the URL) | `app/today.jsx`, `app/reflex-guide.jsx`, `app/library/[id].jsx` |
-| Layout files | Expo Router name | `app/_layout.jsx` |
-| Component files in `components/` | PascalCase, same as the component | `components/PrimaryButton.jsx` |
-| Components | PascalCase | `PrimaryButton`, `ExerciseCard` |
-| Screen component inside a route file | PascalCase + `Screen` | `TodayScreen`, `CalendarScreen` |
-| Functions and variables | camelCase | `currentDay`, `loadNotes()` |
-| Booleans | `is` / `has` / `can` prefix | `isDone`, `hasNotes` |
-| Event handlers | `handle…` inside, `on…` as a prop | `handlePress`, `onPress={handlePress}` |
-| Hooks | `use…` | `useProgress` |
-| Real constants | UPPER_SNAKE_CASE | `EXERCISES_PER_DAY = 4` |
-| Style keys in `StyleSheet.create` | camelCase | `container`, `buttonText` |
-| Other folders | lowercase | `components/`, `theme/`, `data/`, `assets/img/` |
-| Asset files | lowercase, kebab-case | `assets/img/logo.png`, `star-fish.png` |
+| What                                 | Convention                                 | Example                                                         |
+| ------------------------------------ | ------------------------------------------ | --------------------------------------------------------------- |
+| Route files in `app/`                | lowercase, kebab-case (it becomes the URL) | `app/today.jsx`, `app/reflex-guide.jsx`, `app/library/[id].jsx` |
+| Layout files                         | Expo Router name                           | `app/_layout.jsx`                                               |
+| Component files in `components/`     | PascalCase, same as the component          | `components/PrimaryButton.jsx`                                  |
+| Components                           | PascalCase                                 | `PrimaryButton`, `ExerciseCard`                                 |
+| Screen component inside a route file | PascalCase + `Screen`                      | `TodayScreen`, `CalendarScreen`                                 |
+| Functions and variables              | camelCase                                  | `currentDay`, `loadNotes()`                                     |
+| Booleans                             | `is` / `has` / `can` prefix                | `isDone`, `hasNotes`                                            |
+| Event handlers                       | `handle…` inside, `on…` as a prop          | `handlePress`, `onPress={handlePress}`                          |
+| Hooks                                | `use…`                                     | `useProgress`                                                   |
+| Real constants                       | UPPER_SNAKE_CASE                           | `EXERCISES_PER_DAY = 4`                                         |
+| Style keys in `StyleSheet.create`    | camelCase                                  | `container`, `buttonText`                                       |
+| Other folders                        | lowercase                                  | `components/`, `theme/`, `data/`, `assets/img/`                 |
+| Asset files                          | lowercase, kebab-case                      | `assets/img/logo.png`, `star-fish.png`                          |
 
 ### Translate the domain, don't transliterate
 
 Use real English words, not Czech words in code (`cviceni`, `poznamky`) and not
 abbreviations nobody knows. Glossary for this app:
 
-| Czech | In code |
-| --- | --- |
-| cvik | `exercise` |
-| cvičení (dnešní program) | `workout` |
-| série | `series` |
-| den | `day` |
-| primární reflex | `reflex` |
+| Czech                         | In code                                          |
+| ----------------------------- | ------------------------------------------------ |
+| cvik                          | `exercise`                                       |
+| cvičení (dnešní program)      | `workout`                                        |
+| série                         | `series`                                         |
+| den                           | `day`                                            |
+| primární reflex               | `reflex`                                         |
 | neurovývojová stimulace (NVS) | `nvs` (short) or `neurodevelopmentalStimulation` |
-| poznámka | `note` |
-| kalendář | `calendar` |
-| nastavení | `settings` |
-| knihovna cviků | `library` |
-| přehrávač | `player` |
-| rodič / dítě | `parent` / `child` |
+| poznámka                      | `note`                                           |
+| kalendář                      | `calendar`                                       |
+| nastavení                     | `settings`                                       |
+| knihovna cviků                | `library`                                        |
+| přehrávač                     | `player`                                         |
+| rodič / dítě                  | `parent` / `child`                               |
 
 When a new domain word appears, add it to this table so the names stay the same everywhere.
 

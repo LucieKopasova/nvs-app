@@ -25,7 +25,12 @@ export const fonts = {
 }
 
 export const typography = {
-  displayLg: { fontFamily: fonts.extraBold, fontSize: 34, lineHeight: 42, letterSpacing: -0.68 },
+  displayLg: {
+    fontFamily: fonts.extraBold,
+    fontSize: 34,
+    lineHeight: 42,
+    letterSpacing: -0.68,
+  },
   headlineLg: { fontFamily: fonts.bold, fontSize: 26, lineHeight: 34 },
   headlineMd: { fontFamily: fonts.bold, fontSize: 22, lineHeight: 28 },
   headlineSm: { fontFamily: fonts.semiBold, fontSize: 19, lineHeight: 26 },

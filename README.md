@@ -1,6 +1,6 @@
 # Hravé reflexy na doma
 
-*„Malé krůčky, společný čas"*
+_„Malé krůčky, společný čas"_
 
 A mobile app for parents of preschool children (about 4–6 years). It guides them through
 short, regular movement exercises at home that support the integration of primary

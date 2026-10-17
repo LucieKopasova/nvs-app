@@ -8,7 +8,7 @@ const Done = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Hotovo</Text>
 
-      <Link href='/calendar' asChild>
+      <Link href="/calendar" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Dále</Text>
         </Pressable>

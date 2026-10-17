@@ -6,68 +6,49 @@ import { Link } from 'expo-router'
 const Home = () => {
   return (
     <View style={styles.container}>
-
       <Text style={styles.title}>Dnes</Text>
 
       <Link href="/workout" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Cvičíme dnes
-          </Text>
+          <Text style={styles.buttonText}>Cvičíme dnes</Text>
         </Pressable>
       </Link>
 
       <Link href="/calendar" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Kalendář
-          </Text>
+          <Text style={styles.buttonText}>Kalendář</Text>
         </Pressable>
       </Link>
 
-      
       <Link href="/notes" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Poznámky
-          </Text>
+          <Text style={styles.buttonText}>Poznámky</Text>
         </Pressable>
       </Link>
-
-
 
       <Link href="/info-nvs" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Neurovývojová stimulace
-          </Text>
+          <Text style={styles.buttonText}>Neurovývojová stimulace</Text>
         </Pressable>
       </Link>
 
       <Link href="/reflexes" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Primární reflexy
-          </Text>
+          <Text style={styles.buttonText}>Primární reflexy</Text>
         </Pressable>
       </Link>
 
       <Link href="/library" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Knihovna cviků
-          </Text>
+          <Text style={styles.buttonText}>Knihovna cviků</Text>
         </Pressable>
       </Link>
 
-            <Link href="/settings" asChild>
+      <Link href="/settings" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Nastavení
-          </Text>
+          <Text style={styles.buttonText}>Nastavení</Text>
         </Pressable>
       </Link>
-
     </View>
   )
 }
@@ -93,7 +74,7 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans_700Bold',
     fontSize: 26,
     color: '#303F49',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
   },
   subtitle: {
     fontFamily: 'NunitoSans_400Regular',

@@ -21,7 +21,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "emulator": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/emulator.ps1"
+    "emulator": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/emulator.ps1",
+    "format": "prettier --write ."
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "prettier": "3.9.10"
+  }
 }

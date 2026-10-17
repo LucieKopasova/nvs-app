@@ -9,7 +9,7 @@ const library = () => {
       <Text style={styles.title}>Knihovna cviků</Text>
 
       <View style={styles.grid}>
-        <Link href='/library/starfish' asChild>
+        <Link href="/library/starfish" asChild>
           <Pressable style={styles.card}>
             <View style={styles.thumbnail} />
             <Text style={styles.cardTitle}>Hvězdice</Text>
@@ -27,7 +27,9 @@ const library = () => {
         </View>
       </View>
 
-      <Link href='/home' style={styles.link}>Zpět</Link>
+      <Link href="/home" style={styles.link}>
+        Zpět
+      </Link>
     </View>
   )
 }
@@ -36,15 +38,15 @@ export default library
 
 const styles = StyleSheet.create({
   container: {
-  flex: 1,
-  justifyContent: 'center',
-  paddingHorizontal: 20,
-},
-title: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  title: {
     fontFamily: 'NunitoSans_700Bold',
     fontSize: 26,
     color: '#303F49',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
   },
   grid: {
     flexDirection: 'row',
@@ -75,6 +77,6 @@ title: {
   link: {
     marginVertical: 10,
     borderBottomWidth: 1,
-    alignSelf: 'flex-end'
-  }
+    alignSelf: 'flex-end',
+  },
 })

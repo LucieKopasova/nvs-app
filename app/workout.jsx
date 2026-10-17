@@ -8,13 +8,15 @@ const Workout = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Cvičení</Text>
 
-      <Link href='/done' asChild>
+      <Link href="/done" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Dále</Text>
         </Pressable>
       </Link>
 
-      <Link href='/home' style={styles.link}>Zpět</Link>
+      <Link href="/home" style={styles.link}>
+        Zpět
+      </Link>
     </View>
   )
 }

@@ -10,9 +10,7 @@ const Home = () => {
 
       <Text style={styles.title}>Hravé reflexy</Text>
 
-      <Text style={styles.subtitle}>
-        Neurovývojová stimulace s úsměvem
-      </Text>
+      <Text style={styles.subtitle}>Neurovývojová stimulace s úsměvem</Text>
 
       <Link href="/home" asChild>
         <Pressable style={styles.button}>

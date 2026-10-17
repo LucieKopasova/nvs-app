@@ -25,25 +25,26 @@ colors in one theme file, and never hardcode hex values in components.
 
 **Current working palette** (Stitch design system):
 
-| Role | Value | Use |
-|---|---|---|
-| Primary | `#35AFCB` (cyan-teal) | primary buttons, active controls, progress, timer fill |
-| Secondary | `#788A6D` (sage) | info badges, tags, secondary states, active chips |
-| Tertiary | `#E9B69A` (apricot) | encouragement, completion, gentle highlights |
-| Background | `#FBF7EF` (warm linen) | screen background |
-| Card | `#FFFDF8` | cards and raised surfaces |
-| Muted surface | `#E8EDE3` | tracks, segmented controls, tip callouts, secondary buttons |
-| Beige | `#E8E1D5` | inactive chips, recessed or completed items |
-| Text | `#303F49` / `#42483E` | body text and icons. Never use pure black. |
-| Error | `#BA1A1A` | errors |
+| Role          | Value                  | Use                                                         |
+| ------------- | ---------------------- | ----------------------------------------------------------- |
+| Primary       | `#35AFCB` (cyan-teal)  | primary buttons, active controls, progress, timer fill      |
+| Secondary     | `#788A6D` (sage)       | info badges, tags, secondary states, active chips           |
+| Tertiary      | `#E9B69A` (apricot)    | encouragement, completion, gentle highlights                |
+| Background    | `#FBF7EF` (warm linen) | screen background                                           |
+| Card          | `#FFFDF8`              | cards and raised surfaces                                   |
+| Muted surface | `#E8EDE3`              | tracks, segmented controls, tip callouts, secondary buttons |
+| Beige         | `#E8E1D5`              | inactive chips, recessed or completed items                 |
+| Text          | `#303F49` / `#42483E`  | body text and icons. Never use pure black.                  |
+| Error         | `#BA1A1A`              | errors                                                      |
 
 **Alternatives explored in the prompts:**
+
 - **E — azure and mandarin:** background `#FFF9F0`, azure `#35AFCB`, mandarin `#F28B55`,
   soft yellow `#F5D875`, text `#303F49`. The feel is fresh, positive, warm and playful.
 - **G — azure, navy and lime:** background `#F5FAF9`, azure `#25A8C7`, navy `#315B78`,
   lime `#C8D96B`, text `#273B49`. The feel is fresh, modern and a bit sportier.
 - **Sage-led:** sage `#788A6D` as the primary color, with `#E8EDE3`, `#E9B69A`, `#E8E1D5`
-  and text `#42483E`. The first brief said *not* to use sage as the main color, but the
+  and text `#42483E`. The first brief said _not_ to use sage as the main color, but the
   later screens did. The current mix uses cyan as primary and sage as secondary.
 
 Whatever palette wins, the colors must keep good contrast (body text at least WCAG AA).
@@ -54,18 +55,18 @@ Whatever palette wins, the colors must keep good contrast (body text at least WC
   In Expo, load it with `@expo-google-fonts/nunito-sans`.
 - Type scale (size/line height in px, then weight):
 
-| Token | Size / line | Weight | Note |
-|---|---|---|---|
-| display-lg | 34/42 | 800 | completion and openers only; letter-spacing −0.02em |
-| headline-lg | 26/34 | 700 | |
-| headline-md | 22/28 | 700 | |
-| headline-sm | 19/26 | 600 | |
-| body-lg | 17/26 | 400 | |
-| body-md | 15/22 | 400 | |
-| body-sm | 13/18 | 500 | |
-| label-lg | 15/20 | 700 | buttons |
-| label-md | 13/16 | 600 | |
-| label-sm | 11/14 | 600 | |
+| Token       | Size / line | Weight | Note                                                |
+| ----------- | ----------- | ------ | --------------------------------------------------- |
+| display-lg  | 34/42       | 800    | completion and openers only; letter-spacing −0.02em |
+| headline-lg | 26/34       | 700    |                                                     |
+| headline-md | 22/28       | 700    |                                                     |
+| headline-sm | 19/26       | 600    |                                                     |
+| body-lg     | 17/26       | 400    |                                                     |
+| body-md     | 15/22       | 400    |                                                     |
+| body-sm     | 13/18       | 500    |                                                     |
+| label-lg    | 15/20       | 700    | buttons                                             |
+| label-md    | 13/16       | 600    |                                                     |
+| label-sm    | 11/14       | 600    |                                                     |
 
 - Body text stays at regular weight (400). Headings and step titles use 600–700.
 

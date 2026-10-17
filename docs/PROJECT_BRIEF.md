@@ -9,7 +9,7 @@ section 5 are a starting point that can change during implementation.
 
 ## 1. The app
 
-- **Name:** Hravé reflexy (na doma). Tagline: *„Malé krůčky, společný čas"*.
+- **Name:** Hravé reflexy (na doma). Tagline: _„Malé krůčky, společný čas"_.
 - **What it does:** helps parents of preschool children (about **4–6 years**) do short,
   regular movement exercises at home, following a prepared program that supports the
   integration of **primary (primitive) reflexes**.
@@ -33,12 +33,13 @@ section 5 are a starting point that can change during implementation.
 The app is built in phases. Build the basic version first and keep later phases in mind,
 but don't implement them early.
 
-| Phase | Scope |
-|---|---|
+| Phase                           | Scope                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1 — Basic version (current)** | Core app on the device: Home / Today, exercise player (rest, completion), program progress, calendar and manual records, notes, exercise library, reflex guide, settings (reminders). Data is stored **locally on the device**. Exercise **videos are bundled in the app**. There is **no backend, no login and no gamification**. |
-| **2 — Later** | **Backend and accounts:** sign-in, registration, password reset and data sync. **Videos are served from the backend.** **Gamification:** motivating elements for the family; the form is not designed yet. Other extensions as decided. |
+| **2 — Later**                   | **Backend and accounts:** sign-in, registration, password reset and data sync. **Videos are served from the backend.** **Gamification:** motivating elements for the family; the form is not designed yet. Other extensions as decided.                                                                                            |
 
 Keep phase 1 code ready for phase 2:
+
 - Keep data access behind a small storage module (for example `data/` or `storage/`) so it
   can later be swapped for an API.
 - Resolve video sources in one place (for example `video` on each exercise in `data/`) so
@@ -81,15 +82,18 @@ Keep phase 1 code ready for phase 2:
 ## 5. Screens
 
 ### Auth (phase 2)
+
 Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome on first launch is optional.
-| Screen | Content |
-|---|---|
-| Welcome | App name, „Malé krůčky, společný čas", „Jednoduché pohybové aktivity pro společné chvíle doma.", illustration of a parent and child moving together, buttons „Přihlásit se" (primary) and „Vytvořit účet" (secondary) |
-| Sign in | „Vítej zpátky", fields E-mail and Heslo, „Zapomněli jste heslo?", „Přihlásit se", „Ještě nemáš účet? Vytvořit účet" |
-| Register | „Vytvoř si účet", fields E-mail, Heslo (at least 8 characters) and Potvrdit heslo, checkbox „Souhlasím s podmínkami používání a zásadami ochrany osobních údajů.", „Vytvořit účet", „Už máš účet? Přihlásit se" |
-| Password reset | „Obnovení hesla", „Zadej svůj e-mail a pošleme ti instrukce k obnovení hesla.", „Odeslat instrukce", „Zpět na přihlášení", success state „Instrukce odeslány" |
+
+| Screen         | Content                                                                                                                                                                                                               |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Welcome        | App name, „Malé krůčky, společný čas", „Jednoduché pohybové aktivity pro společné chvíle doma.", illustration of a parent and child moving together, buttons „Přihlásit se" (primary) and „Vytvořit účet" (secondary) |
+| Sign in        | „Vítej zpátky", fields E-mail and Heslo, „Zapomněli jste heslo?", „Přihlásit se", „Ještě nemáš účet? Vytvořit účet"                                                                                                   |
+| Register       | „Vytvoř si účet", fields E-mail, Heslo (at least 8 characters) and Potvrdit heslo, checkbox „Souhlasím s podmínkami používání a zásadami ochrany osobních údajů.", „Vytvořit účet", „Už máš účet? Přihlásit se"       |
+| Password reset | „Obnovení hesla", „Zadej svůj e-mail a pošleme ti instrukce k obnovení hesla.", „Odeslat instrukce", „Zpět na přihlášení", success state „Instrukce odeslány"                                                         |
 
 ### Home — „Dnes"
+
 - Header „Hravé reflexy" with a hamburger menu on the right.
 - Heading „Dnes" with a short warm sentence (for example „3. den z cyklu").
 - Prominent primary button **„Cvičíme dnes"** with a play icon. This is the main action.
@@ -101,11 +105,13 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
 - **Menu:** Kalendář, Poznámky, Průvodce reflexy, Knihovna cviků, Nastavení.
 
 ### Series detail (concept)
+
 „Série 1" with „Přehled cvičení na 7 dní". Lists 7 day cards, each with „4 cviky" or four
 small indicators, and a „Cvičit" button for the available day. A compact note says this is
 one of 12 series. There is no big progress dashboard.
 
 ### Exercise player (core screen)
+
 - **The video is the focus:** a large 16:9 frame with rounded corners and no text overlays.
 - Compact top row: „Série 1 · 1. den", „Cvik 1 ze 4", and an info icon for the parent.
   There is no prominent back button.
@@ -113,9 +119,10 @@ one of 12 series. There is no big progress dashboard.
   - **restart** the current exercise
   - large central **play/pause**
   - **skip** to the next exercise
-  
+
   The controls are styled like a clean, modern cassette player, without a literal
   cassette.
+
 - A subtle hint about what comes next, for example „Následuje: Chvilka odpočinku (20 s)".
 - **Info panel** („Poznámka pro rodiče" / „Instrukce pro rodiče", „Na co si dát pozor")
   opens over the video and has a „Zpět k videu" action. Opening it or pausing must
@@ -128,6 +135,7 @@ one of 12 series. There is no big progress dashboard.
   animation of softly expanding shapes. Afterwards the calendar shows today recorded.
 
 ### Calendar — „Kalendář"
+
 - Monthly grid with Czech weekdays (Po Út St Čt Pá So Ne) and month navigation
   (for example „Říjen 2026").
 - Today is highlighted subtly. Days with recorded exercise get a soft green marker.
@@ -137,18 +145,22 @@ one of 12 series. There is no big progress dashboard.
 - „+ Přidat poznámku" button.
 
 ### Manual record — „Zaznamenat cvičení"
+
 „Cvičili jste mimo aplikaci? Záznam můžeš doplnit i zpětně." The form has:
+
 - a date picker „Kdy jste cvičili?" with the options Dnes, Včera, recent days and
   „Vybrat v kalendáři"
 - rows Cvik 1–4, each with a control to mark the exercise as done
 - „Uložit záznam" and „Zrušit"
 
 ### Notes — „Poznámky"
+
 Intro: „Poznamenej si, co chceš při cvičení sledovat nebo si zapamatovat." Notes are cards
 with a date, a short preview and an edit action. There is a „+ Přidat poznámku" button
 and an empty state.
 
 ### Reflex guide — „Primární reflexy" (Průvodce reflexy)
+
 - One continuous scrollable educational page.
 - Intro „Co jsou primární reflexy?" with an illustration and „Více o primárních reflexech"
   (expanded by default), followed by a parent disclaimer.
@@ -162,6 +174,7 @@ and an empty state.
 - Content is placeholder until it is reviewed by an expert.
 
 ### Exercise library — „Cviky" / „Knihovna cviků"
+
 - „Prohlédni si cviky a seznam se s tím, jak se provádějí."
 - Grid of cards in a photo-gallery style, about 3 per row, showing only the thumbnail and
   the name.
@@ -171,6 +184,7 @@ and an empty state.
   room for instructions and safety notes, and a back link „Zpět do knihovny".
 
 ### Settings — „Nastavení"
+
 - **Připomínky cvičení:** a toggle „Připomínat cvičení" and a time picker „Čas upozornění"
   (default 18:00), with „Vyber si čas, který vám doma vyhovuje." The time picker is
   inactive when reminders are off.

@@ -36,35 +36,51 @@ signed-in Chrome to call it from the Stitch page. This only reads the user's own
    `window.__P`:
 
 ```js
-const W = window.WIZ_global_data, PID = "1659365077091035402";
+const W = window.WIZ_global_data,
+  PID = '1659365077091035402'
 const body = new URLSearchParams({
-  'f.req': JSON.stringify([[["dNS8Mc", JSON.stringify([`projects/${PID}`]), null, "generic"]]]),
+  'f.req': JSON.stringify([
+    [['dNS8Mc', JSON.stringify([`projects/${PID}`]), null, 'generic']],
+  ]),
   at: W.SNlM0e,
-});
-const u = `/_/Nemo/data/batchexecute?rpcids=dNS8Mc&source-path=%2Fprojects%2F${PID}&bl=${W.cfb2h}&f.sid=${W.FdrFJe}&hl=cs&rt=c`;
-const t = await (await fetch(u, { method: 'POST', body,
-  headers: { 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8' } })).text();
-const line = t.split('\n').find(l => l.startsWith('[["wrb.fr"'));
-const sessions = JSON.parse(JSON.parse(line)[0][2])[0];
-window.__S = sessions.map(s => ({
-  ts: new Date(s[5][0] * 1000).toISOString().slice(0, 16),
-  prompt: s[3]?.[0] || '',
-  replies: (s[4] || []).filter(r => Array.isArray(r) && r[0] === null && typeof r[1] === 'string').map(r => r[1]),
-})).sort((a, b) => a.ts < b.ts ? -1 : 1);
-window.__P = window.__S.map((s, i) => `### #${i + 1} ${s.ts}\n${s.prompt}`).join('\n\n');
-({ sessions: window.__S.length, chars: window.__P.length })
+})
+const u = `/_/Nemo/data/batchexecute?rpcids=dNS8Mc&source-path=%2Fprojects%2F${PID}&bl=${W.cfb2h}&f.sid=${W.FdrFJe}&hl=cs&rt=c`
+const t = await (
+  await fetch(u, {
+    method: 'POST',
+    body,
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+  })
+).text()
+const line = t.split('\n').find((l) => l.startsWith('[["wrb.fr"'))
+const sessions = JSON.parse(JSON.parse(line)[0][2])[0]
+window.__S = sessions
+  .map((s) => ({
+    ts: new Date(s[5][0] * 1000).toISOString().slice(0, 16),
+    prompt: s[3]?.[0] || '',
+    replies: (s[4] || [])
+      .filter(
+        (r) => Array.isArray(r) && r[0] === null && typeof r[1] === 'string',
+      )
+      .map((r) => r[1]),
+  }))
+  .sort((a, b) => (a.ts < b.ts ? -1 : 1))
+window.__P = window.__S
+  .map((s, i) => `### #${i + 1} ${s.ts}\n${s.prompt}`)
+  .join('\n\n')
+;({ sessions: window.__S.length, chars: window.__P.length })
 ```
 
-   Each session is a tuple: `[0]` is the name, `[3][0]` the user prompt, `[4]` the agent
-   steps (items shaped `[null, "text"]` are Stitch's replies) and `[5]` the timestamp.
-   If parsing fails, the schema probably changed. Print the shape of `sessions[0]` and
-   adapt.
-4. **Results come back truncated to about 1000 characters.** Read `window.__P` in
-   950-character slices, about 12 `javascript_tool` calls per `browser_batch`
-   (for example `window.__P.slice(0,950)`, `window.__P.slice(950,1900)` and so on). Repeat
-   until you reach `chars`. Read `window.__S[i].replies` the same way, but only if you
-   need Stitch's answers.
-5. Close the tab with `tabs_close_mcp`.
+Each session is a tuple: `[0]` is the name, `[3][0]` the user prompt, `[4]` the agent
+steps (items shaped `[null, "text"]` are Stitch's replies) and `[5]` the timestamp.
+If parsing fails, the schema probably changed. Print the shape of `sessions[0]` and
+adapt. 4. **Results come back truncated to about 1000 characters.** Read `window.__P` in
+950-character slices, about 12 `javascript_tool` calls per `browser_batch`
+(for example `window.__P.slice(0,950)`, `window.__P.slice(950,1900)` and so on). Repeat
+until you reach `chars`. Read `window.__S[i].replies` the same way, but only if you
+need Stitch's answers. 5. Close the tab with `tabs_close_mcp`.
 
 ## Dead ends already ruled out (don't retry)
 
@@ -79,8 +95,8 @@ window.__P = window.__S.map((s, i) => `### #${i + 1} ${s.ts}\n${s.prompt}`).join
 
 ## Other RPC IDs seen (same call pattern, argument `["projects/<id>"]`)
 
-| RPC | Returns |
-|---|---|
-| `eW2RYb` | project with theme |
-| `ErneX` | screens with file URLs (large) |
-| `UiiVCf` (argument is the bare ID) | design systems |
+| RPC                                | Returns                        |
+| ---------------------------------- | ------------------------------ |
+| `eW2RYb`                           | project with theme             |
+| `ErneX`                            | screens with file URLs (large) |
+| `UiiVCf` (argument is the bare ID) | design systems                 |

@@ -7,7 +7,9 @@ const settings = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Nastavení</Text>
 
-      <Link href='/home' style={styles.link}>Zpět</Link>
+      <Link href="/home" style={styles.link}>
+        Zpět
+      </Link>
     </View>
   )
 }
@@ -24,11 +26,11 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans_700Bold',
     fontSize: 26,
     color: '#303F49',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
   },
   link: {
     marginVertical: 10,
     borderBottomWidth: 1,
-    alignSelf: 'flex-end'
-  }
+    alignSelf: 'flex-end',
+  },
 })
