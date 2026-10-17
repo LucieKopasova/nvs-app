@@ -1,0 +1,35 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+See `AGENTS.md` for the general Expo rules (always check versioned docs, use `npx expo install`, never hand-edit `ios/`/`android/`). Key facts below are specific to this repo.
+
+## Product & design
+
+- **Read `docs/PROJECT_BRIEF.md` before building features** — what the app is, screens, program rules (12 series × 7 days × 4 exercises), phases (phase 1 = basic app stored locally; backend, login and gamification come in phase 2), and constraints (Czech UI, not a medical tool).
+- **Read `docs/DESIGN.md` before styling anything** — palette (not final: keep colors in one theme file, never hardcode), Nunito Sans type scale, spacing, shapes, components.
+- Project skill `hrave-reflexy` (`.claude/skills/hrave-reflexy/`) holds the design principles and the workflow for building features and screens.
+- Early mockups live in Google Stitch (project ID `1659365077091035402`, `stitch` MCP server). They are inspiration, not a 1:1 spec.
+
+## Stack
+
+- Expo SDK 57 (`expo ~57.0.x`), React Native 0.86, React 19.2 — docs: https://docs.expo.dev/versions/v57.0.0/
+- Expo Router (file-based routing), plain JavaScript/JSX — there is no `tsconfig.json`, so `npx tsc --noEmit` does not apply.
+- Package manager is **npm** (`package-lock.json`); use `npx`, not `bunx`.
+- No test framework and no ESLint config are set up yet. `npx expo lint` will offer to scaffold one on first run.
+
+## Commands
+
+```bash
+npm start                # expo start (dev server; Expo Go works — no custom native modules yet)
+npm run android | ios | web
+npm run emulator         # start Android emulator (lightweight AVD Light_Phone_API_33, cold boot) and move its window on-screen (scripts/emulator.ps1)
+npx expo start --tunnel  # tunnel mode (@expo/ngrok is a dependency for this)
+npx expo install <pkg>   # add dependencies
+npx expo-doctor          # check dependency/config health
+```
+
+## Architecture
+
+- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes); `app/index.jsx` is the home screen. There is no `_layout.jsx` yet, so Expo Router uses its default root layout.
+- App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, light UI style, plugins `expo-router` and `expo-status-bar`.
