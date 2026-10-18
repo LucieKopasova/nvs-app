@@ -1,34 +1,45 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import logo from '../assets/img/logo.png'
+import { StyleSheet, Pressable } from 'react-native'
 import { Link } from 'expo-router'
 import { useColors } from '../constants/theme'
 
-const Home = () => {
+//themed components
+import ThemedView from '../components/ThemedView'
+import ThemedLogo from '../components/ThemedLogo'
+import Spacer from '../components/Spacer'
+import ThemedText from '../components/ThemedText'
+
+const WelcomeScreen = () => {
   const styles = getStyles(useColors())
   return (
-    <View style={styles.container}>
-      <Image source={logo} style={styles.logo} />
+    <ThemedView style={styles.container}>
+      <ThemedLogo style={styles.logo} />
+      <Spacer height={24} />
 
-      <Text style={styles.title}>Hravé reflexy</Text>
+      <ThemedText style={styles.title} title={true}>
+        Hravé reflexy
+      </ThemedText>
+      <Spacer height={8} />
 
-      <Text style={styles.subtitle}>Neurovývojová stimulace s úsměvem</Text>
+      <ThemedText style={styles.subtitle}>
+        Neurovývojová stimulace s úsměvem
+      </ThemedText>
+      <Spacer height={32} />
 
       <Link href="/home" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Pokračovat</Text>
+          <ThemedText style={styles.buttonText}>Pokračovat</ThemedText>
         </Pressable>
       </Link>
-    </View>
+    </ThemedView>
   )
 }
 
-export default Home
+export default WelcomeScreen
 
 const getStyles = (palette) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: palette.background,
       alignItems: 'center',
       justifyContent: 'center',
       paddingHorizontal: 20,
@@ -37,21 +48,16 @@ const getStyles = (palette) =>
       width: 280,
       height: 280,
       resizeMode: 'contain',
-      marginBottom: 24,
     },
     title: {
       fontFamily: 'NunitoSans_700Bold',
       fontSize: 26,
-      color: palette.text,
       textAlign: 'center',
     },
     subtitle: {
       fontFamily: 'NunitoSans_400Regular',
       fontSize: 17,
-      color: palette.textAlt,
       textAlign: 'center',
-      marginTop: 8,
-      marginBottom: 32,
     },
     button: {
       alignSelf: 'stretch',

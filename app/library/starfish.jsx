@@ -1,14 +1,11 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  useWindowDimensions,
-} from 'react-native'
+import { StyleSheet, View, ScrollView, useWindowDimensions } from 'react-native'
 import React from 'react'
 import { useColors, fonts, spacing } from '../../constants/theme'
 
-const Starfish = () => {
+//themed components
+import ThemedText from '../../components/ThemedText'
+
+const StarfishScreen = () => {
   const styles = getStyles(useColors())
   // Screen height, so the video placeholder can take one third of it
   const { height } = useWindowDimensions()
@@ -19,34 +16,38 @@ const Starfish = () => {
       <View style={[styles.video, { height: height / 3 }]} />
 
       <View style={styles.content}>
-        <Text style={styles.title}>Hvězdice</Text>
-        <Text style={styles.text}>
+        <ThemedText style={styles.title} title={true}>
+          Hvězdice
+        </ThemedText>
+        <ThemedText style={styles.text}>
           Dítě sedí na židli nebo na zemi. Na začátku je schoulené do klubíčka:
           ruce zkřížené na hrudi, nohy u sebe a pokrčené, hlava skloněná. S
           nádechem se roztáhne do hvězdy, ruce i nohy daleko od těla a hlava
           mírně zakloněná. S výdechem se vrátí do klubíčka. Opakovat 5–10krát
           pomalu a plynule.
-        </Text>
+        </ThemedText>
 
-        <Text style={styles.subtitle}>Dechová cvičení</Text>
-        <Text style={styles.text}>
+        <ThemedText style={styles.subtitle} title={true}>
+          Dechová cvičení
+        </ThemedText>
+        <ThemedText style={styles.text}>
           Pomalý nádech nosem do břicha (břicho se zvedá) a ještě pomalejší
           výdech pusou. Asi 5–10 nádechů.
-        </Text>
+        </ThemedText>
 
-        <Text style={styles.subtitle}>
+        <ThemedText style={styles.subtitle} title={true}>
           Zklidňující cvičení a pomalé houpání
-        </Text>
-        <Text style={styles.text}>
+        </ThemedText>
+        <ThemedText style={styles.text}>
           Dítě leží nebo sedí a dospělý ho pomalu a rytmicky houpe, například v
           dece, na velkém míči nebo v náruči. Cílem je, aby se dítě uvolnilo.
-        </Text>
+        </ThemedText>
       </View>
     </ScrollView>
   )
 }
 
-export default Starfish
+export default StarfishScreen
 
 const getStyles = (palette) =>
   StyleSheet.create({
@@ -63,18 +64,15 @@ const getStyles = (palette) =>
     title: {
       fontFamily: fonts.bold,
       fontSize: 26,
-      color: palette.text,
     },
     subtitle: {
       fontFamily: fonts.bold,
       fontSize: 19,
-      color: palette.text,
       marginTop: spacing.xs,
     },
     text: {
       fontFamily: fonts.regular,
       fontSize: 17,
-      color: palette.textAlt,
       marginTop: spacing.xs,
       marginBottom: spacing.md,
     },

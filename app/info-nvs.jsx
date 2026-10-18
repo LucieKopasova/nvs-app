@@ -1,14 +1,18 @@
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
-import { useColors } from '../constants/theme'
 
-const InfoNvs = () => {
-  const styles = getStyles(useColors())
+//themed components
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+
+const InfoNvsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Neurovývojová stimulace</Text>
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.title} title={true}>
+        Neurovývojová stimulace
+      </ThemedText>
 
-      <Text style={styles.text}>
+      <ThemedText style={styles.text}>
         Neuro-vývojová stimulace (NVS) je metoda, která pomocí jednoduchého
         pohybu podporuje správný vývoj dítěte. Pohyb miminka v prvních měsících
         života pomáhá v mozku vytvářet propojení, která dítě později potřebuje k
@@ -18,31 +22,28 @@ const InfoNvs = () => {
         cviky, které dítě dělá pravidelně doma s rodičem. Díky opakování si
         mozek vytváří nová propojení a dítě se může lépe soustředit, pohybovat
         jistěji a být klidnější.
-      </Text>
-    </View>
+      </ThemedText>
+    </ThemedView>
   )
 }
 
-export default InfoNvs
-const getStyles = (palette) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: palette.background,
-      justifyContent: 'center',
-      paddingHorizontal: 20,
-    },
-    title: {
-      fontFamily: 'NunitoSans_700Bold',
-      fontSize: 26,
-      color: palette.text,
-      textAlign: 'center',
-    },
-    text: {
-      fontFamily: 'NunitoSans_400Regular',
-      fontSize: 17,
-      color: palette.textAlt,
-      marginTop: 8,
-      marginBottom: 32,
-    },
-  })
+export default InfoNvsScreen
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontFamily: 'NunitoSans_700Bold',
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  text: {
+    fontFamily: 'NunitoSans_400Regular',
+    fontSize: 17,
+    marginTop: 8,
+    marginBottom: 32,
+  },
+})

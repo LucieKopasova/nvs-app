@@ -125,7 +125,11 @@ When a new domain word appears, add it to this table so the names stay the same 
 - [ ] Every visible text is in Czech, with diacritics, vykání and Czech quotation marks.
 - [ ] Plurals match the number.
 - [ ] No Czech words in file names, variables or components.
-- [ ] New route files are lowercase kebab-case and new components are PascalCase.
+- [ ] New route files are lowercase kebab-case and new components are PascalCase. Screen
+      components end with `Screen` (`HomeScreen`); `Layout` is only for `_layout.jsx` files.
+- [ ] The user is a junior and is learning. When her code or a name she suggests breaks a
+      rule here, point it out even if she asked about something else: say the convention,
+      why it exists, and the correct name.
 - [ ] If you find an old file that breaks these rules (for example a camelCase route file), tell
       the user and ask before renaming it. A rename changes the route URL, so every `Link`
       that points to it must change too.

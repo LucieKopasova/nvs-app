@@ -1,37 +1,49 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, View, Pressable } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
 import { useColors, fonts, spacing, radius } from '../constants/theme'
 
-const library = () => {
+//themed components
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+
+const LibraryScreen = () => {
   const styles = getStyles(useColors())
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Knihovna cviků</Text>
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.title} title={true}>
+        Knihovna cviků
+      </ThemedText>
 
       <View style={styles.grid}>
         <Link href="/library/starfish" asChild>
           <Pressable style={styles.card}>
             <View style={styles.thumbnail} />
-            <Text style={styles.cardTitle}>Hvězdice</Text>
+            <ThemedText style={styles.cardTitle} title={true}>
+              Hvězdice
+            </ThemedText>
           </Pressable>
         </Link>
 
         <View style={styles.card}>
           <View style={styles.thumbnail} />
-          <Text style={styles.cardTitle}>Ještěrka</Text>
+          <ThemedText style={styles.cardTitle} title={true}>
+            Ještěrka
+          </ThemedText>
         </View>
 
         <View style={styles.card}>
           <View style={styles.thumbnail} />
-          <Text style={styles.cardTitle}>Kočičí hřbet</Text>
+          <ThemedText style={styles.cardTitle} title={true}>
+            Kočičí hřbet
+          </ThemedText>
         </View>
       </View>
-    </View>
+    </ThemedView>
   )
 }
 
-export default library
+export default LibraryScreen
 
 const getStyles = (palette) =>
   StyleSheet.create({
@@ -43,7 +55,6 @@ const getStyles = (palette) =>
     title: {
       fontFamily: 'NunitoSans_700Bold',
       fontSize: 26,
-      color: palette.text,
       alignSelf: 'flex-start',
     },
     grid: {
@@ -68,7 +79,6 @@ const getStyles = (palette) =>
     cardTitle: {
       fontFamily: fonts.bold,
       fontSize: 13,
-      color: palette.text,
       textAlign: 'center',
       marginTop: spacing.xs,
     },

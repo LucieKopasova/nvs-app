@@ -1,29 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
-import { useColors } from '../constants/theme'
 
-const settings = () => {
-  const styles = getStyles(useColors())
+//themed components
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+
+const SettingsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Nastavení</Text>
-    </View>
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.title} title={true}>
+        Nastavení
+      </ThemedText>
+    </ThemedView>
   )
 }
 
-export default settings
+export default SettingsScreen
 
-const getStyles = (palette) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      paddingHorizontal: 20,
-    },
-    title: {
-      fontFamily: 'NunitoSans_700Bold',
-      fontSize: 26,
-      color: palette.text,
-      alignSelf: 'flex-start',
-    },
-  })
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontFamily: 'NunitoSans_700Bold',
+    fontSize: 26,
+    alignSelf: 'flex-start',
+  },
+})

@@ -1,24 +1,30 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
 import { useColors, fonts, spacing, radius } from '../constants/theme'
 
-const Done = () => {
+//themed components
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+
+const DoneScreen = () => {
   const styles = getStyles(useColors())
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hotovo</Text>
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.title} title={true}>
+        Hotovo
+      </ThemedText>
 
       <Link href="/calendar" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Dále</Text>
+          <ThemedText style={styles.buttonText}>Dále</ThemedText>
         </Pressable>
       </Link>
-    </View>
+    </ThemedView>
   )
 }
 
-export default Done
+export default DoneScreen
 
 const getStyles = (palette) =>
   StyleSheet.create({
@@ -30,7 +36,6 @@ const getStyles = (palette) =>
     title: {
       fontFamily: fonts.bold,
       fontSize: 34,
-      color: palette.text,
       textAlign: 'center',
     },
     button: {

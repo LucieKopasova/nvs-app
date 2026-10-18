@@ -1,89 +1,81 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Pressable } from 'react-native'
 import { Link } from 'expo-router'
 import { useColors } from '../constants/theme'
 
-const Home = () => {
+//themed components
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+
+const HomeScreen = () => {
   const styles = getStyles(useColors())
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Dnes</Text>
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.title} title={true}>
+        Dnes
+      </ThemedText>
 
       <Link href="/workout" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Cvičíme dnes</Text>
+          <ThemedText style={styles.buttonText}>Cvičíme dnes</ThemedText>
         </Pressable>
       </Link>
 
       <Link href="/calendar" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Kalendář</Text>
+          <ThemedText style={styles.buttonText}>Kalendář</ThemedText>
         </Pressable>
       </Link>
 
       <Link href="/notes" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Poznámky</Text>
+          <ThemedText style={styles.buttonText}>Poznámky</ThemedText>
         </Pressable>
       </Link>
 
       <Link href="/info-nvs" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Neurovývojová stimulace</Text>
+          <ThemedText style={styles.buttonText}>
+            Neurovývojová stimulace
+          </ThemedText>
         </Pressable>
       </Link>
 
       <Link href="/reflexes" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Primární reflexy</Text>
+          <ThemedText style={styles.buttonText}>Primární reflexy</ThemedText>
         </Pressable>
       </Link>
 
       <Link href="/library" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Knihovna cviků</Text>
+          <ThemedText style={styles.buttonText}>Knihovna cviků</ThemedText>
         </Pressable>
       </Link>
 
       <Link href="/settings" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Nastavení</Text>
+          <ThemedText style={styles.buttonText}>Nastavení</ThemedText>
         </Pressable>
       </Link>
-    </View>
+    </ThemedView>
   )
 }
 
-export default Home
+export default HomeScreen
 
 const getStyles = (palette) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: palette.background,
       alignItems: 'center',
       justifyContent: 'center',
       paddingHorizontal: 20,
       gap: 15,
     },
-    logo: {
-      width: 280,
-      height: 280,
-      resizeMode: 'contain',
-      marginBottom: 24,
-    },
     title: {
       fontFamily: 'NunitoSans_700Bold',
       fontSize: 26,
-      color: palette.text,
       alignSelf: 'flex-start',
-    },
-    subtitle: {
-      fontFamily: 'NunitoSans_400Regular',
-      fontSize: 17,
-      color: palette.textAlt,
-      textAlign: 'center',
-      marginTop: 8,
-      marginBottom: 32,
     },
     button: {
       alignSelf: 'stretch',
