@@ -1,6 +1,6 @@
-import { Stack } from 'expo-router'
+import { Link, Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useColors } from '../constants/theme'
 import {
@@ -36,8 +36,9 @@ const RootLayout = () => {
       >
         {/* The welcome screen has no header */}
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* One header shared by all tabs (Dnes, Kalendář, Poznámky, Cviky, Průvodce) */}
         <Stack.Screen
-          name="home"
+          name="(tabs)"
           options={{
             title: 'uživatel 1',
             // Avatar in the left corner of the header
@@ -50,13 +51,22 @@ const RootLayout = () => {
                 />
               </View>
             ),
+            // Icon in the right corner opens the settings
+            headerRight: () => (
+              <Link href="/settings" asChild>
+                <Pressable accessibilityLabel="Nastavení">
+                  <Ionicons
+                    name="ellipsis-horizontal-outline"
+                    size={24}
+                    color={palette.text}
+                  />
+                </Pressable>
+              </Link>
+            ),
           }}
         />
         <Stack.Screen name="workout" options={{ title: 'Cvičení' }} />
         <Stack.Screen name="done" options={{ title: 'Hotovo' }} />
-        <Stack.Screen name="calendar" options={{ title: 'Kalendář' }} />
-        <Stack.Screen name="notes" options={{ title: 'Poznámky' }} />
-        <Stack.Screen name="library" options={{ title: 'Knihovna cviků' }} />
         <Stack.Screen name="library/starfish" options={{ title: 'Hvězdice' }} />
         <Stack.Screen name="reflexes" options={{ title: 'Primární reflexy' }} />
         <Stack.Screen

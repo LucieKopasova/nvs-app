@@ -1,10 +1,10 @@
 import { StyleSheet, Pressable } from 'react-native'
 import { Link } from 'expo-router'
-import { useColors } from '../constants/theme'
+import { useColors } from '../../constants/theme'
 
 //themed components
-import ThemedView from '../components/ThemedView'
-import ThemedText from '../components/ThemedText'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
 
 const HomeScreen = () => {
   const styles = getStyles(useColors())
@@ -13,24 +13,6 @@ const HomeScreen = () => {
       <ThemedText style={styles.title} title={true}>
         Dnes
       </ThemedText>
-
-      <Link href="/workout" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>Cvičíme dnes</ThemedText>
-        </Pressable>
-      </Link>
-
-      <Link href="/calendar" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>Kalendář</ThemedText>
-        </Pressable>
-      </Link>
-
-      <Link href="/notes" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>Poznámky</ThemedText>
-        </Pressable>
-      </Link>
 
       <Link href="/info-nvs" asChild>
         <Pressable style={styles.button}>
@@ -43,18 +25,6 @@ const HomeScreen = () => {
       <Link href="/reflexes" asChild>
         <Pressable style={styles.button}>
           <ThemedText style={styles.buttonText}>Primární reflexy</ThemedText>
-        </Pressable>
-      </Link>
-
-      <Link href="/library" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>Knihovna cviků</ThemedText>
-        </Pressable>
-      </Link>
-
-      <Link href="/settings" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>Nastavení</ThemedText>
         </Pressable>
       </Link>
     </ThemedView>

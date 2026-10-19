@@ -51,9 +51,11 @@ To add a dependency, use `npx expo install <package>` so the version matches the
 app/            screens (each file is one route)
   _layout.jsx   root layout: loads fonts, sets up navigation
   index.jsx     welcome screen
-  home.jsx      "Dnes" menu with links to the other screens
+  (tabs)/       screens with the bottom tab bar (Dnes, Kalendář, Poznámky, Cviky, Průvodce)
   library/      exercise detail screens
+  settings.jsx  settings, opened from the three-dots icon in the header
 assets/         icons, splash screen and images
+components/     shared themed components (ThemedText, ThemedView, …)
 constants/
   theme.js      design tokens: colors, fonts, spacing, radius
 docs/           product and design documentation

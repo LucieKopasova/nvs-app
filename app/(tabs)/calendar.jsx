@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native'
 import React from 'react'
 
 //themed components
-import ThemedView from '../components/ThemedView'
-import ThemedText from '../components/ThemedText'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
 
 const CalendarScreen = () => {
   return (

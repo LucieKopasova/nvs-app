@@ -1,11 +1,11 @@
 import { StyleSheet, View, Pressable } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
-import { useColors, fonts, spacing, radius } from '../constants/theme'
+import { useColors, fonts, spacing, radius } from '../../constants/theme'
 
 //themed components
-import ThemedView from '../components/ThemedView'
-import ThemedText from '../components/ThemedText'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
 
 const LibraryScreen = () => {
   const styles = getStyles(useColors())

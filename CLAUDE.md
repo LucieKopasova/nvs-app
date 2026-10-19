@@ -31,7 +31,8 @@ npx expo-doctor          # check dependency/config health
 
 ## Architecture
 
-- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes). `app/index.jsx` is the welcome screen, and its „Pokračovat" button leads to `app/home.jsx` (the „Dnes" menu with links to the other screens).
+- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes). `app/index.jsx` is the welcome screen, and its „Pokračovat" button leads to the tabs in `app/(tabs)/` (Dnes, Kalendář, Poznámky, Cviky, Průvodce; tab bar in `app/(tabs)/_layout.jsx`). Detail screens (`workout`, `done`, `settings`, `library/starfish`, …) live outside the tabs, in the root Stack.
+- The header above the tabs is set on the `(tabs)` screen in the root Stack (`app/_layout.jsx`): avatar on the left, an `ellipsis-horizontal-outline` icon on the right that opens `/settings`. Detail screens get only a back arrow and their title.
 - `app/_layout.jsx` is the root layout: it loads Nunito Sans (400 and 700 only) with `useFonts` and renders a `Stack` with `headerShown: false`.
 - Design tokens (colors, fonts, typography, spacing, radius) are in `constants/theme.js`.
 - Screen conventions (page container, back links, detail screens in folders) are in the `hrave-reflexy` skill; naming and Czech text rules are in the `language-and-naming` skill.

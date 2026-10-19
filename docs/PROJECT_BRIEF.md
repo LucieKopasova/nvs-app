@@ -110,11 +110,11 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
   - completed: soft green, no checkmark
   - current day: warm cream or apricot accent
   - upcoming: neutral beige, still readable
-- **Menu:** for now a list of buttons; it will be replaced by a **bottom tab bar** with
-  5 tabs: **Dnes · Kalendář · Poznámky · Cviky · Průvodce**. The tab bar is for switching
-  screens only; actions like „Cvičíme dnes" stay on the screen.
-- **Settings are not a tab.** They open from a small gear icon on the right of the „Dnes"
-  header. The avatar on the left stays for child profiles.
+- **Menu:** a **bottom tab bar** with 5 tabs: **Dnes · Kalendář · Poznámky · Cviky ·
+  Průvodce**. The tab bar is for switching screens only; actions like „Cvičíme dnes" stay
+  on the screen.
+- **Settings are not a tab.** A three-dots icon on the right of the „Dnes" header opens the
+  „Více" menu (see below). The avatar on the left stays for child profiles.
 - The welcome screen and the exercise player do not show the tab bar.
 
 ### Series detail (concept)
@@ -217,12 +217,16 @@ exercise records with the therapist. Without this consent the app is not linked.
 When the therapist ends the therapy, the plan disappears from the app and the parent sees
 a short message: „Program máte odcvičený. Další postup proberte se svým terapeutem."
 
-### Settings — „Nastavení"
+### More menu — „Více"
 
-- **Připomínky cvičení:** a toggle „Připomínat cvičení" and a time picker „Čas upozornění"
+Opens from the three-dots icon in the „Dnes" header. It is a plain screen with a list of
+links, without the tab bar. More items may be added later.
+
+- **Připomínky:** a toggle „Připomínat cvičení" and a time picker „Čas upozornění"
   (default 18:00), with „Vyber si čas, který vám doma vyhovuje." The time picker is
   inactive when reminders are off.
-- **Můj účet** (phase 2): the signed-in e-mail, „Údaje účtu", „Změna hesla", „Odhlásit se".
+- **Nastavení:** in phase 1 it is almost empty. In phase 2 it holds **Můj účet**: the
+  signed-in e-mail, „Údaje účtu", „Změna hesla", „Odhlásit se".
 - **O aplikaci:** „O aplikaci Hravé reflexy", „Zásady ochrany osobních údajů",
   „Podmínky používání".
 
