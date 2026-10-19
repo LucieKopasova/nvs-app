@@ -91,10 +91,27 @@ The user set these while building the first screens. Follow them for new screens
   `{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }`. Use a `ScrollView` for
   long text. A screen without a header (`index`, later the player) starts under the status
   bar, so keep its first text clear of the clock and battery.
-- **Page title** is bold, 26 px, `palette.text`, aligned left (`alignSelf: 'flex-start'`).
+- **Themed components** in `components/` (the user made them; use them on every screen):
+  - `ThemedView` instead of the root `View`; it sets `palette.background`. A long screen
+    keeps its `ScrollView`.
+  - `ThemedText` instead of `Text`. It sets the text color: `title={true}` gives
+    `palette.text` (titles, subtitles, card titles), without it `palette.textAlt` (body
+    text). Don't repeat these colors in styles. Text on a primary button keeps
+    `color: palette.onPrimary` in its style, which overrides the default.
+  - `ThemedLogo` for the logo (light or dark image); give it a size via `style`.
+  - `Spacer` (`height`, default 40) for vertical gaps where the user uses it (the welcome
+    screen). Don't add a `margin` on top of a `Spacer` for the same gap.
+  - `ThemedCard` (`palette.card`, `radius.card`, `spacing.lg` padding) for large cards. The
+    small library tiles don't use it: they have their own radius and border and one is a
+    `Pressable`.
+  - Import them under a `//themed components` comment, as in `app/index.jsx`.
+- **Page title** is bold, 26 px, `ThemedText` with `title={true}`, aligned left
+  (`alignSelf: 'flex-start'`).
 - **Colors:** get the palette with `useColors()` from `constants/theme.js` (light or dark,
   by the phone's setting) and build styles inside the component:
   `const styles = getStyles(useColors())` with `const getStyles = (palette) => StyleSheet.create({…})`.
+  When the styles need no palette value (the themed components already set the colors),
+  use a plain `const styles = StyleSheet.create({…})` below the component.
 - **Going back:** the header back arrow (set up in `app/_layout.jsx`, every screen except
   `index`) is the only way back. Don't add „Zpět" links to the page body.
 - **Buttons that navigate** are `<Link href=… asChild>` around a `Pressable`, so the button

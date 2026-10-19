@@ -110,8 +110,12 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
   - completed: soft green, no checkmark
   - current day: warm cream or apricot accent
   - upcoming: neutral beige, still readable
-- **Menu:** Kalendář, Poznámky, Průvodce reflexy, Knihovna cviků, Nastavení. For now it is
-  a list of buttons; the plan is a bottom tab bar.
+- **Menu:** for now a list of buttons; it will be replaced by a **bottom tab bar** with
+  5 tabs: **Dnes · Kalendář · Poznámky · Cviky · Průvodce**. The tab bar is for switching
+  screens only; actions like „Cvičíme dnes" stay on the screen.
+- **Settings are not a tab.** They open from a small gear icon on the right of the „Dnes"
+  header. The avatar on the left stays for child profiles.
+- The welcome screen and the exercise player do not show the tab bar.
 
 ### Series detail (concept)
 
@@ -168,6 +172,17 @@ Intro: „Poznamenej si, co chceš při cvičení sledovat nebo si zapamatovat."
 with a date, a short preview and an edit action. There is a „+ Přidat poznámku" button
 and an empty state.
 
+### Guide — „Průvodce"
+
+The one place where the parent reads background information. A short list of cards that
+lead to:
+
+- **Co je neurovývojová stimulace:** what the method is and how the program works.
+- **Primární reflexy:** the reflex guide below.
+- **Další terapie a odborníci:** general information on when and whom to ask for help.
+  No tests, checklists or statements about the child (see „Not a medical tool").
+- **Můj terapeut** (phase 2).
+
 ### Reflex guide — „Primární reflexy" (Průvodce reflexy)
 
 - One continuous scrollable educational page.
@@ -191,6 +206,16 @@ and an empty state.
   Klidné natažení, Kočičí protažení, Hnízdečko v lehu.
 - **Detail:** large video preview, title, short description, a „Jak na to" section with
   room for instructions and safety notes, and a back link „Zpět do knihovny".
+
+### My therapist — „Můj terapeut" (phase 2)
+
+Contact for the family's therapist: name, address and phone (tap to call).
+
+Before the app is linked to a therapist, the parent must confirm consent to share their
+exercise records with the therapist. Without this consent the app is not linked.
+
+When the therapist ends the therapy, the plan disappears from the app and the parent sees
+a short message: „Program máte odcvičený. Další postup proberte se svým terapeutem."
 
 ### Settings — „Nastavení"
 

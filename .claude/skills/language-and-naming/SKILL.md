@@ -85,13 +85,14 @@ function pluralize(count, one, few, many) {
 | Components                           | PascalCase                                 | `PrimaryButton`, `ExerciseCard`                                 |
 | Screen component inside a route file | PascalCase + `Screen`                      | `TodayScreen`, `CalendarScreen`                                 |
 | Functions and variables              | camelCase                                  | `currentDay`, `loadNotes()`                                     |
+| Imported images and other assets     | camelCase (a value, not a component)       | `import lightLogo from '../assets/img/logo-light.png'`          |
 | Booleans                             | `is` / `has` / `can` prefix                | `isDone`, `hasNotes`                                            |
 | Event handlers                       | `handle…` inside, `on…` as a prop          | `handlePress`, `onPress={handlePress}`                          |
 | Hooks                                | `use…`                                     | `useProgress`                                                   |
 | Real constants                       | UPPER_SNAKE_CASE                           | `EXERCISES_PER_DAY = 4`                                         |
 | Style keys in `StyleSheet.create`    | camelCase                                  | `container`, `buttonText`                                       |
 | Other folders                        | lowercase                                  | `components/`, `theme/`, `data/`, `assets/img/`                 |
-| Asset files                          | lowercase, kebab-case                      | `assets/img/logo.png`, `star-fish.png`                          |
+| Asset files                          | lowercase, kebab-case                      | `assets/img/logo-light.png`, `star-fish.png`                    |
 
 ### Translate the domain, don't transliterate
 
