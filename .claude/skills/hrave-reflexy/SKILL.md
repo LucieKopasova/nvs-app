@@ -116,7 +116,7 @@ The user set these while building the first screens. Follow them for new screens
   `index`) is the only way back. Don't add „Zpět" links to the page body.
 - **Buttons that navigate** are `<Link href=… asChild>` around a `Pressable`, so the button
   keeps its own look.
-- **Detail screens go in a folder** next to their list screen: `app/library.jsx` is the
+- **Detail screens go in a folder** together with their list screen: `app/library/index.jsx` is the
   list and `app/library/starfish.jsx` is a detail at `/library/starfish`.
 - **Every new screen needs a way in.** After creating one, ask where its link or button
   should go (usually the menu on `home`).

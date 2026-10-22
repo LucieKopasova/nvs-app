@@ -99,7 +99,7 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
 | Register       | „Vytvoř si účet", fields E-mail, Heslo (at least 8 characters) and Potvrdit heslo, checkbox „Souhlasím s podmínkami používání a zásadami ochrany osobních údajů.", „Vytvořit účet", „Už máš účet? Přihlásit se"       |
 | Password reset | „Obnovení hesla", „Zadej svůj e-mail a pošleme ti instrukce k obnovení hesla.", „Odeslat instrukce", „Zpět na přihlášení", success state „Instrukce odeslány"                                                         |
 
-### Home — „Dnes"
+### Home — „Domů"
 
 - Header with the avatar on the left. The avatar is for switching between child profiles;
   in phase 1 it is only a placeholder. See „Navigation and headers" in [DESIGN.md](DESIGN.md).
@@ -110,11 +110,11 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
   - completed: soft green, no checkmark
   - current day: warm cream or apricot accent
   - upcoming: neutral beige, still readable
-- **Menu:** a **bottom tab bar** with 5 tabs: **Dnes · Kalendář · Poznámky · Cviky ·
-  Průvodce**. The tab bar is for switching screens only; actions like „Cvičíme dnes" stay
-  on the screen.
-- **Settings are not a tab.** A three-dots icon on the right of the „Dnes" header opens the
-  „Více" menu (see below). The avatar on the left stays for child profiles.
+- **Menu:** a **bottom tab bar** with 5 tabs: **Domů · Kalendář · Poznámky · Průvodce ·
+  Profil**. The exercise library is not a tab; it opens from „Průvodce". The tab bar is for
+  switching screens only; actions like „Cvičíme dnes" stay on the screen.
+- **Settings are not a tab.** A three-dots icon on the right of the „Domů" header opens the
+  „Více" menu (see below). On the left of the header is a heart icon.
 - The welcome screen and the exercise player do not show the tab bar.
 
 ### Series detail (concept)
@@ -179,6 +179,7 @@ lead to:
 
 - **Co je neurovývojová stimulace:** what the method is and how the program works.
 - **Primární reflexy:** the reflex guide below.
+- **Knihovna cviků:** the exercise library below.
 - **Další terapie a odborníci:** general information on when and whom to ask for help.
   No tests, checklists or statements about the child (see „Not a medical tool").
 - **Můj terapeut** (phase 2).
@@ -219,7 +220,7 @@ a short message: „Program máte odcvičený. Další postup proberte se svým 
 
 ### More menu — „Více"
 
-Opens from the three-dots icon in the „Dnes" header. It is a plain screen with a list of
+Opens from the three-dots icon in the „Domů" header. It is a plain screen with a list of
 links, without the tab bar. More items may be added later.
 
 - **Připomínky:** a toggle „Připomínat cvičení" and a time picker „Čas upozornění"

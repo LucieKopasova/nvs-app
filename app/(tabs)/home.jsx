@@ -5,6 +5,7 @@ import { useColors } from '../../constants/theme'
 //themed components
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemedText'
+import ThemedButton from '../../components/ThemedButton'
 
 const HomeScreen = () => {
   const styles = getStyles(useColors())
@@ -14,19 +15,10 @@ const HomeScreen = () => {
         Dnes
       </ThemedText>
 
-      <Link href="/info-nvs" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>
-            Neurovývojová stimulace
-          </ThemedText>
-        </Pressable>
+      <Link href="/workout" asChild>
+        <ThemedButton title="Cvičíme dnes" />
       </Link>
 
-      <Link href="/reflexes" asChild>
-        <Pressable style={styles.button}>
-          <ThemedText style={styles.buttonText}>Primární reflexy</ThemedText>
-        </Pressable>
-      </Link>
     </ThemedView>
   )
 }

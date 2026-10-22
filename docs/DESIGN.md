@@ -99,8 +99,8 @@ Whatever palette wins, the colors must keep good contrast (body text at least WC
 Agreed with the user, not built yet (only the avatar exists). Build it step by step when
 the screens get there:
 
-- **Bottom tab bar** as the main navigation (Dnes · Kalendář · Knihovna · Poznámky). It
-  replaces the button menu on „Dnes".
+- **Bottom tab bar** as the main navigation (Domů · Kalendář · Knihovna · Poznámky). It
+  replaces the button menu on „Domů".
 - **Top-level screens** (the tabs) have no back arrow. The header has the **avatar on the
   left** (primary circle with a white outline person icon). The avatar is for **switching
   between child profiles** (one parent, several children), not a way to Nastavení. In phase 1 it is only a placeholder

@@ -20,7 +20,7 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Dnes',
+          title: 'Domů',
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? 'home' : 'home-outline'}
@@ -60,20 +60,6 @@ const TabsLayout = () => {
       />
 
       <Tabs.Screen
-        name="library"
-        options={{
-          title: 'Cviky',
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons
-              name={focused ? 'barbell' : 'barbell-outline'}
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
         name="guide"
         options={{
           title: 'Průvodce',
@@ -85,9 +71,19 @@ const TabsLayout = () => {
             />
           ),
         }}
-        // The guide is not ready yet, so tapping the tab does nothing
-        listeners={{
-          tabPress: (event) => event.preventDefault(),
+      />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profil',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name={focused ? 'person' : 'person-outline'}
+              size={size}
+              color={color}
+            />
+          ),
         }}
       />
     </Tabs>

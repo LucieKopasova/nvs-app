@@ -1,7 +1,49 @@
-// Placeholder – Expo Router needs a file for every tab.
-// The guide tab is blocked in (tabs)/_layout.jsx, so this screen is not shown yet.
+import { StyleSheet } from 'react-native'
+import { Link } from 'expo-router'
+
+//themed components
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
+import ThemedButton from '../../components/ThemedButton'
+
 const GuideScreen = () => {
-  return null
+  return (
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.title} title={true}>
+        Průvodce
+      </ThemedText>
+
+      <Link href="/info-nvs" asChild>
+        <ThemedButton title="Neurovývojová stimulace" style={styles.button} />
+      </Link>
+
+      <Link href="/reflexes" asChild>
+        <ThemedButton title="Primární reflexy" style={styles.button} />
+      </Link>
+
+      <Link href="/library" asChild>
+        <ThemedButton title="Knihovna cviků" style={styles.button} />
+      </Link>
+    </ThemedView>
+  )
 }
 
 export default GuideScreen
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    gap: 15,
+  },
+  title: {
+    fontFamily: 'NunitoSans_700Bold',
+    fontSize: 26,
+    alignSelf: 'flex-start',
+  },
+  button: {
+    alignSelf: 'stretch',
+  },
+})

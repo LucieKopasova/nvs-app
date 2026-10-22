@@ -36,16 +36,16 @@ const RootLayout = () => {
       >
         {/* The welcome screen has no header */}
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        {/* One header shared by all tabs (Dnes, Kalendář, Poznámky, Cviky, Průvodce) */}
+        {/* One header shared by all tabs (Domů, Kalendář, Poznámky, Průvodce, Profil) */}
         <Stack.Screen
           name="(tabs)"
           options={{
             title: 'uživatel 1',
-            // Avatar in the left corner of the header
+            // Heart in the left corner of the header
             headerLeft: () => (
               <View style={styles.avatar}>
                 <Ionicons
-                  name="person-outline"
+                  name="heart-outline"
                   size={20}
                   color={palette.onPrimary}
                 />
@@ -67,6 +67,10 @@ const RootLayout = () => {
         />
         <Stack.Screen name="workout" options={{ title: 'Cvičení' }} />
         <Stack.Screen name="done" options={{ title: 'Hotovo' }} />
+        <Stack.Screen
+          name="library/index"
+          options={{ title: 'Knihovna cviků' }}
+        />
         <Stack.Screen name="library/starfish" options={{ title: 'Hvězdice' }} />
         <Stack.Screen name="reflexes" options={{ title: 'Primární reflexy' }} />
         <Stack.Screen
