@@ -14,7 +14,7 @@ See `AGENTS.md` for the general Expo rules (always check versioned docs, use `np
 
 ## Stack
 
-- Expo SDK 57 (`expo ~57.0.x`), React Native 0.86, React 19.2 — docs: https://docs.expo.dev/versions/v57.0.0/
+- Expo SDK 58 (`expo ~58.0.x`), React Native 0.88, React 19.3 — docs: https://docs.expo.dev/versions/v58.0.0/
 - Expo Router (file-based routing), plain JavaScript/JSX — there is no `tsconfig.json`, so `npx tsc --noEmit` does not apply.
 - Package manager is **npm** (`package-lock.json`); use `npx`, not `bunx`.
 - No test framework and no ESLint config are set up yet. `npx expo lint` will offer to scaffold one on first run.
@@ -25,7 +25,7 @@ See `AGENTS.md` for the general Expo rules (always check versioned docs, use `np
 npm start                # expo start (dev server; Expo Go works — no custom native modules yet)
 npm run android | ios | web
 npm run emulator         # start Android emulator (lightweight AVD Light_Phone_API_33, cold boot) and move its window on-screen (scripts/emulator.ps1)
-npx expo start --tunnel  # tunnel mode (@expo/ngrok is a dependency for this)
+npx expo start --tunnel ngrok  # tunnel mode without an Expo login (@expo/ngrok is a dependency); plain --tunnel needs `npx expo login` since SDK 58
 npx expo install <pkg>   # add dependencies
 npx expo-doctor          # check dependency/config health
 ```
@@ -34,7 +34,9 @@ npx expo-doctor          # check dependency/config health
 
 - **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes). `app/index.jsx` is the welcome screen, and its „Pokračovat" button leads to the tabs in `app/(tabs)/` (Domů, Kalendář, Poznámky, Průvodce, Profil; tab bar in `app/(tabs)/_layout.jsx`). Detail screens (`workout`, `done`, `settings`, `library`, `library/starfish`, …) live outside the tabs, in the root Stack.
 - The header above the tabs is set on the `(tabs)` screen in the root Stack (`app/_layout.jsx`): a heart icon on the left, an `ellipsis-horizontal-outline` icon on the right that opens `/settings`. Detail screens get only a back arrow and their title.
-- `app/_layout.jsx` is the root layout: it loads Nunito Sans (400 and 700 only) with `useFonts` and renders a `Stack` with `headerShown: false`.
+- `app/_layout.jsx` is the root layout: it loads Nunito Sans (400 and 700 only) with `useFonts` and renders a `Stack` with a themed header; only `index` (the welcome screen) has `headerShown: false`.
 - Design tokens (colors, fonts, typography, spacing, radius) are in `constants/theme.js`.
 - Screen conventions (page container, back links, detail screens in folders) are in the `hrave-reflexy` skill; naming and Czech text rules are in the `language-and-naming` skill.
-- App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, `userInterfaceStyle: "light"` (set for development; production will use `"automatic"` so the dark palette in `constants/theme.js` turns on), plugins `expo-router` and `expo-status-bar`.
+- App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, `userInterfaceStyle: "light"` (set for development; production will use `"automatic"` so the dark palette in `constants/theme.js` turns on), plugins `expo-router`, `expo-status-bar`, `expo-font` and `expo-video`.
+- On Windows PowerShell, plain `npx` can fail with "running scripts is disabled"; use `npx.cmd` (or set `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`).
+- Web doesn't run yet: `react-native-web` isn't installed (`react-dom` is, pinned to the `react` version). Don't install it without asking.

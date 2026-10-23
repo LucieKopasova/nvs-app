@@ -79,14 +79,15 @@ The user set these while building the first screens. Follow them for new screens
 
 - **Header from the Stack.** `app/_layout.jsx` shows the native header; each screen's
   Czech title is set there in a `<Stack.Screen name=… options={{ title: … }} />`. Add a line
-  for every new screen. `index` (welcome) has no header. `home` has the **avatar** in
-  `headerLeft` (`greySurface` circle with a `text`-colored Ionicons `heart-outline`, not primary, so it doesn't look like the main button). The avatar is for
+  for every new screen. `index` (welcome) has no header. The tabs share one header, set on
+  the `(tabs)` screen: the **avatar** in `headerLeft` (`greySurface` circle with a `text`-colored Ionicons `heart-outline`, not primary, so it doesn't look like the main button). The avatar is for
   switching between child profiles (one parent, several children, each with their own
-  progress), not a way to Nastavení; for now it is a placeholder with no action.
-- **Navigation direction is agreed, partly built:** the header with a back arrow and the
-  avatar on „Dnes" are done. The bottom tab bar and the headerless player are not built
-  yet. See „Navigation and headers" in `docs/DESIGN.md`. Don't build them unasked; just
-  don't work against them.
+  progress), not a way to Nastavení; for now it is a placeholder with no action. On the
+  right, an `ellipsis-horizontal-outline` icon opens `/settings`.
+- **Navigation direction is agreed, mostly built:** the tab bar in `app/(tabs)/`, the tab
+  header and the back arrow on detail screens are done. The headerless player is not built
+  yet. See „Navigation and headers" in `docs/DESIGN.md`. Don't build it unasked; just
+  don't work against it.
 - **Page container:** give the root view
   `{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }`. Use a `ScrollView` for
   long text. A screen without a header (`index`, later the player) starts under the status
@@ -112,8 +113,8 @@ The user set these while building the first screens. Follow them for new screens
   `const styles = getStyles(useColors())` with `const getStyles = (palette) => StyleSheet.create({…})`.
   When the styles need no palette value (the themed components already set the colors),
   use a plain `const styles = StyleSheet.create({…})` below the component.
-- **Going back:** the header back arrow (set up in `app/_layout.jsx`, every screen except
-  `index`) is the only way back. Don't add „Zpět" links to the page body.
+- **Going back:** the header back arrow (set up in `app/_layout.jsx`, on every detail screen
+  outside the tabs) is the only way back. Don't add „Zpět" links to the page body.
 - **Buttons that navigate** are `<Link href=… asChild>` around a `Pressable`, so the button
   keeps its own look.
 - **Detail screens go in a folder** together with their list screen: `app/library/index.jsx` is the
@@ -139,9 +140,8 @@ The user set these while building the first screens. Follow them for new screens
    - `Pressable` with a subtle pressed state
    - icons from `@expo/vector-icons` (installed; outline icons, e.g. Ionicons
      `person-outline`, MaterialIcons)
-   - new packages only via `npx expo install` (see `AGENTS.md`). The project has an
-     unrelated peer conflict (`react-dom` vs `react`), so a plain install fails with
-     ERESOLVE; use `npx expo install <pkg> -- --legacy-peer-deps`.
+   - new packages only via `npx expo install` (see `AGENTS.md`). `react-dom` is pinned to
+     the same version as `react`; keep them equal, or npm fails with ERESOLVE.
 4. **Check the rules:**
    - nothing from phase 2 has slipped in (login, gamification)
    - upcoming days don't look disabled
@@ -150,8 +150,8 @@ The user set these while building the first screens. Follow them for new screens
    - all text is Czech and uses vykání
    - no child data is collected
 5. **Verify:** `npx expo export --platform android --output-dir <scratchpad>/android-export`
-   must build. Web export doesn't work, because `react-dom` and `react-native-web` aren't
-   installed; don't install them without asking. There are no tests or lint yet. If the user wants to see it, use `npm run emulator` plus `npm run android` (or the
+   must build. Web export doesn't work, because `react-native-web` isn't installed;
+   don't install it without asking. There are no tests or lint yet. If the user wants to see it, use `npm run emulator` plus `npm run android` (or the
    `run` skill) and take a screenshot.
 6. **Hand back:** summarize in Czech what was built, what is mocked and what is still
    open. Don't commit unless asked.

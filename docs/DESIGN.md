@@ -94,15 +94,15 @@ Whatever palette wins, the colors must keep good contrast (body text at least WC
 - Separate elements with 1 px hairline borders, for example
   `rgba(120,138,109,0.15)`, instead of dark dividers.
 
-## Navigation and headers — planned direction
+## Navigation and headers
 
-Agreed with the user, not built yet (only the avatar exists). Build it step by step when
-the screens get there:
+Agreed with the user. Built: the tab bar, the shared tab header (avatar and three dots)
+and the back arrow on detail screens. Not built yet: the headerless exercise player.
 
-- **Bottom tab bar** as the main navigation (Domů · Kalendář · Knihovna · Poznámky). It
-  replaces the button menu on „Domů".
+- **Bottom tab bar** as the main navigation (Domů · Kalendář · Poznámky · Průvodce ·
+  Profil). The exercise library is not a tab; it opens from „Průvodce".
 - **Top-level screens** (the tabs) have no back arrow. The header has the **avatar on the
-  left** (a soft grey circle with a dark outline heart icon; not primary, so it doesn't
+  left** and a three-dots icon on the right that opens Nastavení (a soft grey circle with a dark outline heart icon; not primary, so it doesn't
   compete with the main button). The avatar is for **switching
   between child profiles** (one parent, several children), not a way to Nastavení. In phase 1 it is only a placeholder
   with no action. A large title or a short greeting fits here.

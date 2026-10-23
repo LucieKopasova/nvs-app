@@ -118,7 +118,7 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
 - **Menu:** a **bottom tab bar** with 5 tabs: **Domů · Kalendář · Poznámky · Průvodce ·
   Profil**. The exercise library is not a tab; it opens from „Průvodce". The tab bar is for
   switching screens only; actions like „Cvičíme dnes" stay on the screen.
-- **Settings are not a tab.** A three-dots icon on the right of the „Domů" header opens the
+- **Settings are not a tab.** A three-dots icon on the right of the header (shared by all tabs) opens the
   „Více" menu (see below). On the left of the header is a heart icon.
 - The welcome screen and the exercise player do not show the tab bar.
 
@@ -227,7 +227,7 @@ a short message: „Program máte odcvičený. Další postup proberte se svým 
 
 ### More menu — „Více"
 
-Opens from the three-dots icon in the „Domů" header. It is a plain screen with a list of
+Opens from the three-dots icon in the tab header. It is a plain screen with a list of
 links, without the tab bar. More items may be added later.
 
 - **Připomínky:** a toggle „Připomínat cvičení" and a time picker „Čas upozornění"

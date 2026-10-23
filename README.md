@@ -23,24 +23,26 @@ npm install
 npm start
 ```
 
-Then open the app in **Expo Go** on your phone (scan the QR code), or press `a` for Android
-or `w` for the web.
+Then open the app in **Expo Go** on your phone (scan the QR code), or press `a` for Android.
+Expo Go must support the project's SDK (58). The web version doesn't run yet.
 
 Other commands:
 
 ```bash
 npm run android    # start and open on Android
 npm run ios        # start and open on iOS
-npm run web        # start in the browser
 npm run emulator   # start the Android emulator (Windows, scripts/emulator.ps1)
-npx expo start --tunnel   # tunnel mode, when the phone is on a different network
+npx expo start --tunnel ngrok   # tunnel mode, when the phone is on a different network
 ```
+
+On Windows PowerShell, if `npx` fails with "running scripts is disabled", use `npx.cmd`
+instead.
 
 To add a dependency, use `npx expo install <package>` so the version matches the Expo SDK.
 
 ## Tech stack
 
-- [Expo](https://docs.expo.dev/versions/v57.0.0/) SDK 57, React Native 0.86, React 19.2
+- [Expo](https://docs.expo.dev/versions/v58.0.0/) SDK 58, React Native 0.88, React 19.3
 - [Expo Router](https://docs.expo.dev/router/introduction/) (file-based routing)
 - Plain JavaScript (JSX), no TypeScript
 - Font: Nunito Sans
