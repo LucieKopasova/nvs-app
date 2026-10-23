@@ -105,6 +105,11 @@ Not built in phase 1. In phase 1 the app opens straight to Home. A short welcome
   in phase 1 it is only a placeholder. See „Navigation and headers" in [DESIGN.md](DESIGN.md).
 - Heading „Dnes" with a short warm sentence (for example „3. den z cyklu").
 - Prominent primary button **„Cvičíme dnes"** with a play icon. This is the main action.
+- The „Dnes" card holds only the heading, the day („3. den z cyklu") and „Cvičíme dnes".
+  There is no manual-record shortcut on Home: manual records live in „Kalendář". It's
+  easier to add a shortcut later if parents look for it than to take one away.
+- One icon never has two meanings across the app: the pencil means notes, the plus means
+  "add something".
 - A list of **7 day cards** („1. den" … „7. den"). Each card has a thumbnail, the day label
   and a status. There are three visual states:
   - completed: soft green, no checkmark
@@ -156,6 +161,8 @@ one of 12 series. There is no big progress dashboard.
 - **Selected-date panel**, for example „12. října": „Cvičení zaznamenáno" and the note
   text with an edit action. Empty state: „Pro tento den zatím nemáš žádný záznam."
 - „+ Přidat poznámku" button.
+- „Zaznamenat cvičení" button (secondary style) that opens the manual record. This is the
+  only way into it.
 
 ### Manual record — „Zaznamenat cvičení"
 
@@ -249,7 +256,50 @@ yet.
 - **Note:** date and text.
 - **Derived values:** day completed, series unlocked, and the current day.
 
-## 7. Open questions and known inconsistencies
+## 7. Exercise videos
+
+Rules for filming and preparing the real exercise videos. The files in `assets/videos/`
+are placeholders from Pexels (author Ivan S) and will be replaced.
+
+**Filming**
+
+- **Landscape, 16:9** (phone held horizontally). The player shows a 16:9 frame in portrait
+  and fills the screen in landscape. Portrait video would look wrong in both.
+- The child (and the parent, if they help) is fully in frame for the whole exercise.
+  Keep a little space around them, nothing important at the edges.
+- The same calm background, light and camera position for all exercises, so the videos
+  look consistent.
+- The phone stands on a tripod, not hand-held.
+- One exercise per video, 20–40 s. It starts directly with the movement: no intro, logo
+  or outro.
+- No text in the video. The name and instructions are shown in the app.
+- Record in 1080p or 4K and keep the originals outside the repository. The app only gets
+  compressed copies.
+
+**Export for the app**
+
+- MP4, H.264, 1280×720, 25 or 30 fps, no sound track. Sound is not decided yet; if voice
+  instructions are added, use AAC mono at 96 kbit/s.
+- Target size is about **2–3 MB per 30 s** of video.
+- File names in English, lowercase, kebab-case, named after the exercise
+  (`starfish.mp4`).
+- ffmpeg command used for the placeholders:
+
+  ```bash
+  ffmpeg -i original.mp4 -an -vf scale=1280:720 -c:v libx264 -preset slow -crf 26 -pix_fmt yuv420p -movflags +faststart starfish.mp4
+  ```
+
+**App size**
+
+- Keep all bundled videos together **under about 100 MB**. App stores get stricter above
+  about 200 MB for the whole download.
+- Estimate: 30 different exercises × 2.5 MB ≈ 75 MB.
+- If the total grows past 100 MB, don't lower the quality further. Load the videos from the
+  backend instead (planned for phase 2).
+- Videos make the git repository grow. Commit only the final compressed files, never the
+  originals.
+
+## 8. Open questions and known inconsistencies
 
 - **Colors are not final.** See [DESIGN.md](DESIGN.md).
 - Exercise detail, reflex guide chapters and „Na co si dát pozor" contain placeholder or
@@ -260,6 +310,8 @@ yet.
   „Exercise Calendar", „Zaznam Cviceni").
 - Home vs. Series detail: the series detail was a concept. It is not decided whether it
   replaces the 7-day list on Home.
-- Bundled videos increase the app size. Check this once the real videos exist.
+- Bundled videos increase the app size. See the limits in section 7 and check them once
+  the real videos exist.
+- Sound in exercise videos (none, music or voice instructions) is not decided.
 - Phase 2: backend, auth provider, video hosting, and what gamification will look like. It has to fit the
   calm tone of the app.

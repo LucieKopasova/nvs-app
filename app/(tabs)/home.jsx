@@ -1,24 +1,27 @@
-import { StyleSheet, Pressable } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Link } from 'expo-router'
-import { useColors } from '../../constants/theme'
+import { useColors, typography, spacing } from '../../constants/theme'
 
 //themed components
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemedText'
 import ThemedButton from '../../components/ThemedButton'
+import ThemedCard from '../../components/ThemedCard'
 
 const HomeScreen = () => {
   const styles = getStyles(useColors())
   return (
     <ThemedView style={styles.container}>
-      <ThemedText style={styles.title} title={true}>
-        Dnes
-      </ThemedText>
+      <ThemedCard style={styles.todayCard}>
+        <ThemedText style={styles.todayTitle} title={true}>
+          Dnes
+        </ThemedText>
+        <ThemedText style={styles.todayDay}>3. den z cyklu</ThemedText>
 
-      <Link href="/workout" asChild>
-        <ThemedButton title="Cvičíme dnes" />
-      </Link>
-
+        <Link href="/workout" asChild>
+          <ThemedButton title="Cvičíme dnes" icon="play" />
+        </Link>
+      </ThemedCard>
     </ThemedView>
   )
 }
@@ -29,29 +32,17 @@ const getStyles = (palette) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
       paddingHorizontal: 20,
-      gap: 15,
+      paddingTop: spacing.lg,
     },
-    title: {
-      fontFamily: 'NunitoSans_700Bold',
-      fontSize: 26,
-      alignSelf: 'flex-start',
+    todayCard: {
+      backgroundColor: palette.greySurface,
     },
-    button: {
-      alignSelf: 'stretch',
-      minHeight: 56,
-      paddingHorizontal: 24,
-      borderRadius: 9999,
-      backgroundColor: palette.primary,
-      alignItems: 'center',
-      justifyContent: 'center',
-      boxShadow: '0 6px 16px -4px rgba(53, 175, 203, 0.35)',
+    todayTitle: {
+      ...typography.headlineMd,
     },
-    buttonText: {
-      fontFamily: 'NunitoSans_700Bold',
-      fontSize: 15,
-      color: palette.onPrimary,
+    todayDay: {
+      ...typography.bodyMd,
+      marginBottom: spacing.md,
     },
   })

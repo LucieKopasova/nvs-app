@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "video-review",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Users/lucak/AppData/Local/Temp/claude/C--Users-lucak-Desktop-nvs-app/9b508f32-cc62-4a8c-955d-75ee2f66d82e/scratchpad/video-review-server.js"],
+      "port": 4321
+    },
+    {
+      "name": "exercise-animation",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Users/lucak/AppData/Local/Temp/claude/C--Users-lucak-Desktop-nvs-app/9b508f32-cc62-4a8c-955d-75ee2f66d82e/scratchpad/anim/anim-server.js"],
+      "port": 4322
+    }
+  ]
+}

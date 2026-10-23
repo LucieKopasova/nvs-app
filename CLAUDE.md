@@ -9,6 +9,7 @@ See `AGENTS.md` for the general Expo rules (always check versioned docs, use `np
 - **Read `docs/PROJECT_BRIEF.md` before building features** — what the app is, screens, program rules (12 series × 7 days × 4 exercises), phases (phase 1 = basic app stored locally; backend, login and gamification come in phase 2), and constraints (Czech UI, not a medical tool).
 - **Read `docs/DESIGN.md` before styling anything** — palette (not final: keep colors in one theme file, never hardcode), Nunito Sans type scale, spacing, shapes, components.
 - Project skill `hrave-reflexy` (`.claude/skills/hrave-reflexy/`) holds the design principles and the workflow for building features and screens.
+- **After changing a screen or component, run the `mobile-ux-reviewer` agent** (`.claude/agents/`) and fix its 🔴 findings before handing the work back.
 - Early mockups live in Google Stitch (project ID `1659365077091035402`, `stitch` MCP server). They are inspiration, not a 1:1 spec.
 
 ## Stack

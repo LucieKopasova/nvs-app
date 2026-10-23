@@ -80,7 +80,7 @@ The user set these while building the first screens. Follow them for new screens
 - **Header from the Stack.** `app/_layout.jsx` shows the native header; each screen's
   Czech title is set there in a `<Stack.Screen name=… options={{ title: … }} />`. Add a line
   for every new screen. `index` (welcome) has no header. `home` has the **avatar** in
-  `headerLeft` (primary circle, white Ionicons `person-outline`). The avatar is for
+  `headerLeft` (`greySurface` circle with a `text`-colored Ionicons `heart-outline`, not primary, so it doesn't look like the main button). The avatar is for
   switching between child profiles (one parent, several children, each with their own
   progress), not a way to Nastavení; for now it is a placeholder with no action.
 - **Navigation direction is agreed, partly built:** the header with a back arrow and the

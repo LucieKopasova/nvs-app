@@ -29,7 +29,9 @@ const RootLayout = () => {
       <Stack
         screenOptions={{
           contentStyle: { backgroundColor: palette.background },
-          headerStyle: { backgroundColor: palette.mutedSurface },
+          headerStyle: { backgroundColor: palette.background },
+          // Soft system shadow under the header, so it stands out from the white page
+          headerShadowVisible: true,
           headerTintColor: palette.text,
           headerTitleStyle: { fontFamily: 'NunitoSans_700Bold' },
         }}
@@ -47,7 +49,7 @@ const RootLayout = () => {
                 <Ionicons
                   name="heart-outline"
                   size={20}
-                  color={palette.onPrimary}
+                  color={palette.text}
                 />
               </View>
             ),
@@ -91,7 +93,7 @@ const getStyles = (palette) =>
       width: 36,
       height: 36,
       borderRadius: 18,
-      backgroundColor: palette.primary,
+      backgroundColor: palette.greySurface,
       alignItems: 'center',
       justifyContent: 'center',
       marginRight: 12,
