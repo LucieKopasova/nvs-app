@@ -156,6 +156,27 @@ The user set these while building the first screens. Follow them for new screens
 6. **Hand back:** summarize in Czech what was built, what is mocked and what is still
    open. Don't commit unless asked.
 
+## Calendar: agreed approach (not built yet)
+
+The user only wanted a proposal so far, so don't build it until asked. When the
+„Kalendář" tab (`app/(tabs)/calendar.jsx`) gets built:
+
+- **Library:** `react-native-calendars` (Wix). It is plain JS, so it works in Expo Go, and
+  it needs no extra dependency. We chose it over `@marceloterreiro/flash-calendar`, which
+  needs `@shopify/flash-list` and is built for infinite scrolling, which we don't need
+  (one month plus ‹ › arrows).
+- **Czech and Monday first:** `LocaleConfig` with Czech month and day names
+  (Po Út St Čt Pá So Ne), and `firstDay={1}`.
+- **Colors:** pass values from `useColors()` into `theme`; no hex values.
+- **Custom days:** draw each day with `dayComponent` (`date.dateString` such as
+  `"2026-10-12"`, `state` is `"today"` or `"disabled"`). It shows a soft green circle for
+  recorded exercise and a small Ionicons `pencil` icon (positioned absolutely) for a note,
+  as the user wants.
+- **Planned steps:** (1) a small storage module for records per day and per exercise
+  (`@react-native-async-storage/async-storage`), (2) the grid, (3) the selected-day panel
+  in a `ThemedCard`, (4) `app/record.jsx` „Zaznamenat cvičení", (5) export and
+  `mobile-ux-reviewer`.
+
 ## Keeping the docs alive
 
 When the user decides something (the final palette, tykání/vykání, a new rule, a dropped

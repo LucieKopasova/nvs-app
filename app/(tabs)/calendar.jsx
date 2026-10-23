@@ -1,16 +1,122 @@
 import { StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import { Calendar, LocaleConfig } from 'react-native-calendars'
 
 //themed components
 import ThemedView from '../../components/ThemedView'
+import Spacer from '../../components/Spacer'
+import { useColors } from '../../constants/theme'
 import ThemedText from '../../components/ThemedText'
+import ThemedCard from '../../components/ThemedCard'
+
+//storage
+import { exercisedDates } from '../../storage/records'
+
+LocaleConfig.locales.cs = {
+  monthNames: [
+    'Leden',
+    'Únor',
+    'Březen',
+    'Duben',
+    'Květen',
+    'Červen',
+    'Červenec',
+    'Srpen',
+    'Září',
+    'Říjen',
+    'Listopad',
+    'Prosinec',
+  ],
+  monthNamesShort: [
+    'led',
+    'úno',
+    'bře',
+    'dub',
+    'kvě',
+    'čvn',
+    'čvc',
+    'srp',
+    'zář',
+    'říj',
+    'lis',
+    'pro',
+  ],
+  dayNames: [
+    'neděle',
+    'pondělí',
+    'úterý',
+    'středa',
+    'čtvrtek',
+    'pátek',
+    'sobota',
+  ],
+  dayNamesShort: ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'],
+  today: 'Dnes',
+}
+LocaleConfig.defaultLocale = 'cs'
+const monthNamesGenitive = [
+  'ledna',
+  'února',
+  'března',
+  'dubna',
+  'května',
+  'června',
+  'července',
+  'srpna',
+  'září',
+  'října',
+  'listopadu',
+  'prosince',
+]
 
 const CalendarScreen = () => {
+  const palette = useColors()
+  const [selectedDate, setSelectedDate] = useState('')
+  const parts = selectedDate.split('-')
+  const day = Number(parts[2])
+  const month = monthNamesGenitive[Number(parts[1]) - 1]
+  const selectedLabel = `${day}. ${month}`
+  const isExercised = exercisedDates.includes(selectedDate)
+
+  const markedDates = {}
+  exercisedDates.forEach((date) => {
+    markedDates[date] = {
+      customStyles: {
+        container: { backgroundColor: palette.mutedSurface },
+      },
+    }
+  })
+  markedDates[selectedDate] = { selected: true }
+
   return (
     <ThemedView style={styles.container}>
-      <ThemedText style={styles.title} title={true}>
-        Kalendář
-      </ThemedText>
+      <Spacer height={24} />
+      <Calendar
+        firstDay={1}
+        markingType="custom"
+        onDayPress={(day) => setSelectedDate(day.dateString)}
+        markedDates={markedDates}
+        theme={{
+          calendarBackground: palette.card,
+          monthTextColor: palette.text,
+          textSectionTitleColor: palette.textAlt,
+          dayTextColor: palette.text,
+          todayTextColor: palette.primary,
+          arrowColor: palette.primary,
+          selectedDayBackgroundColor: palette.primary,
+          selectedDayTextColor: palette.onPrimary,
+        }}
+      />
+      <Spacer height={24} />
+      {selectedDate !== '' && (
+        <ThemedCard>
+          <ThemedText title={true}>{selectedLabel}</ThemedText>
+          {isExercised && <ThemedText>Odcvičeno</ThemedText>}
+          {!isExercised && (
+            <ThemedText>Pro tento den zatím nemáte žádný záznam.</ThemedText>
+          )}
+        </ThemedCard>
+      )}
     </ThemedView>
   )
 }
