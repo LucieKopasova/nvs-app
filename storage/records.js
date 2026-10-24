@@ -28,3 +28,35 @@ export const addExercisedDate = async (date) => {
   }
   await AsyncStorage.setItem(EXERCISED_DATES_KEY, JSON.stringify(dates))
 }
+
+// The name of the "drawer" where the notes are saved
+const NOTES_KEY = 'notes'
+
+// All notes saved on the device
+export const getNotes = async () => {
+  const json = await AsyncStorage.getItem(NOTES_KEY)
+  if (json === null) {
+    return []
+  }
+  return JSON.parse(json)
+}
+
+// Saves the note for one day. If the day already has a note, its text is replaced
+export const saveNote = async (date, text) => {
+  const notes = await getNotes()
+  const existingNote = notes.find((note) => note.date === date)
+  if (existingNote) {
+    existingNote.text = text
+  } else {
+    notes.push({ date: date, text: text })
+  }
+  await AsyncStorage.setItem(NOTES_KEY, JSON.stringify(notes))
+}
+
+// Deletes the note for one day
+export const deleteNote = async (date) => {
+  const notes = await getNotes()
+  const remainingNotes = notes.filter((note) => note.date !== date)
+  await AsyncStorage.setItem(NOTES_KEY, JSON.stringify(remainingNotes))
+}
+  

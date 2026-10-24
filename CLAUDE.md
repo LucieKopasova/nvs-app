@@ -18,6 +18,7 @@ See `AGENTS.md` for the general Expo rules (always check versioned docs, use `np
 - Expo Router (file-based routing), plain JavaScript/JSX — there is no `tsconfig.json`, so `npx tsc --noEmit` does not apply.
 - Package manager is **npm** (`package-lock.json`); use `npx`, not `bunx`.
 - No test framework and no ESLint config are set up yet. `npx expo lint` will offer to scaffold one on first run.
+- Prettier is set up (`.prettierrc`: no semicolons, single quotes); `npm run format` formats the whole repo.
 
 ## Commands
 
@@ -32,11 +33,12 @@ npx expo-doctor          # check dependency/config health
 
 ## Architecture
 
-- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes). `app/index.jsx` is the welcome screen, and its „Pokračovat" button leads to the tabs in `app/(tabs)/` (Domů, Kalendář, Poznámky, Průvodce, Profil; tab bar in `app/(tabs)/_layout.jsx`). Detail screens (`workout`, `done`, `settings`, `library`, `library/starfish`, …) live outside the tabs, in the root Stack.
+- **Entry point is `expo-router/entry`** (`package.json` `main`). Routes live in the top-level `app/` directory (not `src/app/` as AGENTS.md describes). `app/index.jsx` is the welcome screen, and its „Pokračovat" button leads to the tabs in `app/(tabs)/` (Domů, Kalendář, Poznámky, Průvodce, Profil; tab bar in `app/(tabs)/_layout.jsx`). Detail screens (`workout`, `done`, `settings`, `library`, `library/starfish`, `notes/[date]`, …) live outside the tabs, in the root Stack.
+- Notes: one note per day, so the date is its id. `app/notes/[date].jsx` (dynamic route, e.g. `/notes/2026-10-24`) writes a new note or edits/deletes the existing one; it opens from „Přidat poznámku" and from `components/NoteCard.jsx`, which is shared by the Poznámky tab and the calendar.
 - The header above the tabs is set on the `(tabs)` screen in the root Stack (`app/_layout.jsx`): a heart icon on the left, an `ellipsis-horizontal-outline` icon on the right that opens `/settings`. Detail screens get only a back arrow and their title.
 - `app/_layout.jsx` is the root layout: it loads Nunito Sans (400 and 700 only) with `useFonts` and renders a `Stack` with a themed header; only `index` (the welcome screen) has `headerShown: false`.
 - Design tokens (colors, fonts, typography, spacing, radius) are in `constants/theme.js`.
-- User records are read and written only through `storage/records.js` (AsyncStorage, JSON). Screens never call AsyncStorage directly, so phase 2 can swap the module for a backend. Dates are stored as `'yyyy-MM-dd'` strings; format and parse them with `date-fns` (`format`, `parseISO`, `cs` locale), not by hand.
+- User records are read and written only through `storage/records.js` (AsyncStorage, JSON). Screens never call AsyncStorage directly, so phase 2 can swap the module for a backend. It holds exercised days (`getExercisedDates`, `addExercisedDate`) and notes (`getNotes`, `saveNote` — adds or replaces the day's note — `deleteNote`). Dates are stored as `'yyyy-MM-dd'` strings, which also sort and compare correctly as plain text; format and parse them with `date-fns` (`format`, `parseISO`, `cs` locale), not by hand.
 - Tab screens stay mounted when you switch tabs, so a tab that shows saved data loads it with `useFocusEffect` + `useCallback` (from `expo-router`), not `useEffect`. Detail screens in the root Stack are created fresh each time, so `useEffect` is enough there (e.g. `done.jsx` saves today's date on open).
 - Screen conventions (page container, back links, detail screens in folders) are in the `hrave-reflexy` skill; naming and Czech text rules are in the `language-and-naming` skill.
 - App config is in `app.json`: deep-link scheme `nvsapp`, portrait-only, `userInterfaceStyle: "light"` (set for development; production will use `"automatic"` so the dark palette in `constants/theme.js` turns on), plugins `expo-router`, `expo-status-bar`, `expo-font` and `expo-video`.

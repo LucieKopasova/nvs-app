@@ -149,7 +149,8 @@ one of 12 series. There is no big progress dashboard.
 - **Rest state** „Chvilka odpočinku": large calm countdown (for example 00:20), a breathing
   cue, „Odpočiňte si, než budete pokračovat.", „Pokračovat", „Přeskočit odpočinek".
 - **Completion** „Máte hotovo!": „Děkujeme za společný čas. Dnešní cvičení je dokončeno.",
-  „Dokončeno: 4 cviky", „Hotovo", and an optional „Přidat poznámku". It may use a subtle
+  „Dokončeno: 4 cviky" and „Hotovo". No „Přidat poznámku" here: this screen is for the
+  child; notes are added from „Poznámky" and „Kalendář". It may use a subtle
   animation of softly expanding shapes. Afterwards the calendar shows today recorded.
 
 ### Calendar — „Kalendář"
@@ -158,9 +159,12 @@ one of 12 series. There is no big progress dashboard.
   (for example „Říjen 2026").
 - Today is highlighted subtly. Days with recorded exercise get a soft green marker.
   Days with a note get a tiny pencil icon.
-- **Selected-date panel**, for example „12. října": „Odcvičeno" and the note
-  text with an edit action. Empty state: „Pro tento den zatím nemáš žádný záznam."
-- „+ Přidat poznámku" button.
+- **Selected-date panel**: two separate cards. The day card has the date in small text
+  (for example „12. října") and the status in bold, larger text: „Odcvičeno" (card in the
+  same soft green as the calendar marker) or „Zatím bez záznamu" (neutral card). Below it,
+  if the day has one, the note card (full text, pencil, tap to edit).
+- „+ Přidat poznámku" button, only on exercised days without a note: a note belongs to an
+  exercise.
 - „Zaznamenat cvičení" button (secondary style) that opens the manual record. This is the
   only way into it.
 
@@ -175,9 +179,12 @@ one of 12 series. There is no big progress dashboard.
 
 ### Notes — „Poznámky"
 
-Intro: „Poznamenej si, co chceš při cvičení sledovat nebo si zapamatovat." Notes are cards
-with a date, a short preview and an edit action. There is a „+ Přidat poznámku" button
-and an empty state.
+Notes are written after the exercise, as a calm reflection of how it went (not a plan of
+what to watch). Intro: „Jak se dnes cvičilo? Zapište si, co se povedlo, co bylo těžší nebo
+co vás potěšilo." Notes are cards with a date, a short preview and an edit action. There
+is at most one note per day; adding a note for a day that already has one opens the
+existing note for editing. There is a „+ Přidat poznámku" button and an empty state:
+„Zatím tu nemáte žádné poznámky. Po cvičení si sem můžete zapsat, jak to šlo."
 
 ### Guide — „Průvodce"
 
@@ -315,5 +322,9 @@ are placeholders from Pexels (author Ivan S) and will be replaced.
 - Bundled videos increase the app size. See the limits in section 7 and check them once
   the real videos exist.
 - Sound in exercise videos (none, music or voice instructions) is not decided.
+- Notes: should the „Přidat poznámku" button on the „Poznámky" tab stay? Notes belong to an
+  exercise and can be added (also backdated) from „Kalendář", and the tab button currently
+  allows a note for today even without an exercise. The pencil marker in the month grid is
+  postponed (it needs a custom day component).
 - Phase 2: backend, auth provider, video hosting, and what gamification will look like. It has to fit the
   calm tone of the app.

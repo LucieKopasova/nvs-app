@@ -92,6 +92,14 @@ The user set these while building the first screens. Follow them for new screens
   `{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }`. Use a `ScrollView` for
   long text. A screen without a header (`index`, later the player) starts under the status
   bar, so keep its first text clear of the clock and battery.
+- **Will it fit a small phone (360×640)?** If a screen can be taller than that (calendar plus
+  cards, a growing text field), wrap it: `ThemedView` (`styles.screen = { flex: 1 }`) →
+  `ScrollView contentContainerStyle={styles.container}` with `paddingHorizontal: 20,
+  paddingBottom: 24` and no `flex: 1` (otherwise nothing scrolls). Otherwise buttons end up
+  under the tab bar.
+- **Screens with a text field** (`app/notes/[date].jsx`): add `KeyboardAvoidingView
+  behavior="padding"` around the `ScrollView`, and `keyboardShouldPersistTaps="handled"`, so
+  „Uložit" is never hidden by the keyboard or pushed off by a long text.
 - **Themed components** in `components/` (the user made them; use them on every screen):
   - `ThemedView` instead of the root `View`; it sets `palette.background`. A long screen
     keeps its `ScrollView`.
@@ -105,6 +113,12 @@ The user set these while building the first screens. Follow them for new screens
   - `ThemedCard` (`palette.card`, `radius.card`, `spacing.lg` padding) for large cards. The
     small library tiles don't use it: they have their own radius and border and one is a
     `Pressable`.
+  - `ThemedButton` (`title`, `icon`, `variant`: primary, secondary, encouragement;
+    `disabled`). It has a `Pressable` inside, so it goes straight into
+    `<Link href=… asChild>`.
+  - `NoteCard` (`note`, `title`, `style`, `showFullText`): the note card shared by
+    „Poznámky" (date as title, 2-line preview) and „Kalendář" („Poznámka", full text). The
+    whole card links to `/notes/<date>`. Change the note look here, not in the screens.
   - Import them under a `//themed components` comment, as in `app/index.jsx`.
 - **Page title** is bold, 26 px, `ThemedText` with `title={true}`, aligned left
   (`alignSelf: 'flex-start'`).
@@ -116,9 +130,15 @@ The user set these while building the first screens. Follow them for new screens
 - **Going back:** the header back arrow (set up in `app/_layout.jsx`, on every detail screen
   outside the tabs) is the only way back. Don't add „Zpět" links to the page body.
 - **Buttons that navigate** are `<Link href=… asChild>` around a `Pressable`, so the button
-  keeps its own look.
+  keeps its own look. A card that opens something is `Link` → `Pressable` → `ThemedCard`
+  (a card alone can't be tapped).
 - **Detail screens go in a folder** together with their list screen: `app/library/index.jsx` is the
-  list and `app/library/starfish.jsx` is a detail at `/library/starfish`.
+  list and `app/library/starfish.jsx` is a detail at `/library/starfish`. When the list is a
+  tab, the detail folder sits at the top level: `app/notes/[date].jsx` (outside `(tabs)`, so
+  it has no tab bar). Register each detail in `app/_layout.jsx`
+  (`<Stack.Screen name="notes/[date]" …>`). One dynamic screen can both create and edit:
+  it reads its param with `useLocalSearchParams` and loads the existing record if there is
+  one.
 - **Every new screen needs a way in.** After creating one, ask where its link or button
   should go (usually the menu on `home`).
 - **Current flow:** `index` (welcome, „Pokračovat") → `home` („Dnes" menu) → `workout`
@@ -135,6 +155,10 @@ The user set these while building the first screens. Follow them for new screens
    exercise content in `data/`, and read and write user records only through one small
    storage module, so phase 2 can swap it for a backend. Don't build auth or an API yet.
 3. **Build:** use plain JSX, React Native and `StyleSheet.create` with theme values.
+   React Native styles look like CSS but have no shorthands: `border: '1px solid …'` is
+   silently ignored; write `borderWidth: 1` and `borderColor` (numbers, no `px`).
+   Palette values go in the inline part of `style={[styles.x, { borderColor: palette.… }]}`,
+   because a `StyleSheet.create` below the component can't see `palette`.
    - `SafeAreaView` from `react-native-safe-area-context`
    - `ScrollView` or `FlatList` for long content
    - `Pressable` with a subtle pressed state
@@ -156,10 +180,14 @@ The user set these while building the first screens. Follow them for new screens
 6. **Hand back:** summarize in Czech what was built, what is mocked and what is still
    open. Don't commit unless asked.
 
-## Calendar: in progress
+## Calendar and notes: in progress
 
-The user is building „Kalendář" (`app/(tabs)/calendar.jsx`) herself, lesson by lesson.
-Explain and review; don't write the screen code for her.
+The user builds „Kalendář" (`app/(tabs)/calendar.jsx`) and „Poznámky" herself, lesson by
+lesson, to understand the code. One small change per message: show the snippet, give the
+exact place as a clickable `file:line` link, say „změň řádek" vs. „přidej pod řádek"
+clearly (a vague „přidej" once led to a duplicate import), and explain why. Going bottom-up
+in a file keeps the line numbers valid. Don't quiz her on syntax. When she asks you to
+finish something („udělal bys to"), do it and explain what changed.
 
 **Built:**
 
@@ -173,14 +201,27 @@ Explain and review; don't write the screen code for her.
 - **Exercised days:** `markingType="custom"` with `customStyles.container`
   `backgroundColor: palette.mutedSurface` (soft green). This replaced the planned
   `dayComponent`; switch to `dayComponent` only when the note pencil icon needs it.
-- **Selected-day panel:** a `ThemedCard` with the date via `date-fns`
-  (`format(parseISO(selectedDate), 'd. MMMM', { locale: cs })`) and „Odcvičeno" or the
-  empty state.
-- **Data:** `storage/records.js` (`getExercisedDates`, `addExercisedDate`, AsyncStorage);
-  `done.jsx` saves today on open; the calendar loads with `useFocusEffect`.
+- **Selected-day panel:** the page is a `ScrollView`. A day card with the small date
+  (`format(parseISO(selectedDate), 'd. MMMM', { locale: cs })`) and the bold status
+  „Odcvičeno" (card fill `mutedSurface`, like the grid marker) or „Zatím bez záznamu". Below
+  it the `NoteCard` with the full text, or „Přidat poznámku" — only on exercised days,
+  because a note belongs to an exercise.
+- **Data:** `storage/records.js` (`getExercisedDates`, `addExercisedDate`, `getNotes`,
+  `saveNote`, `deleteNote`, AsyncStorage); `done.jsx` saves today on open; the calendar
+  loads days and notes in one `useFocusEffect` (`loadRecords`).
 
-**Still to do:** the note pencil icon, „+ Přidat poznámku", `app/record.jsx`
-„Zaznamenat cvičení" (with records per exercise), export and `mobile-ux-reviewer`.
+**Notes (built):** one note per day `{ date, text }`, so the date is the id and
+`saveNote` both adds and edits. The „Poznámky" tab lists them newest first
+(`b.date.localeCompare(a.date)`) in a `FlatList` with an empty state; the editor
+`app/notes/[date].jsx` loads an existing note, disables „Uložit" for empty text, and
+deletes after an `Alert` confirm. Notes are a calm look back after exercising (intro
+„Jak se dnes cvičilo?…"). `done.jsx` has no note button: that screen is for the child.
+
+**Still to do:** the pencil marker in the month grid (needs `dayComponent`; postponed),
+whether the „Poznámky" tab keeps its „Přidat poznámku" button (open question), 🟡 items
+from the last `mobile-ux-reviewer` run (placeholder color and the word „dnes" when editing
+a past day, pressed state on note cards, text hierarchy in cards, `ThemedText` has no
+default font), `app/record.jsx` „Zaznamenat cvičení" (with records per exercise).
 
 ## Keeping the docs alive
 

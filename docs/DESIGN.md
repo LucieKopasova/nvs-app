@@ -126,9 +126,16 @@ and the back arrow on detail screens. Not built yet: the headerless exercise pla
 - **Routine and day card:** card fill, 48 px radius, 24 px padding, hairline border,
   thumbnail in a soft rounded mask. States are completed (soft green), current
   (cream/apricot accent) and upcoming (neutral beige, never shown as disabled).
+- **Note card** (`components/NoteCard.jsx`, used in „Poznámky" and „Kalendář"): card fill,
+  32 px radius, a 1 px `textAlt` border (darker than hairline on purpose, so the notes
+  stand out from the white page), title on the left and an outline pencil on the right,
+  then the text. The whole card is tappable; the pencil is only a visual hint.
+- **Calendar day card:** small date, then the status in bold 19 px. An exercised day has
+  the muted surface (soft green) fill, the same color as its marker in the month grid.
 - **Parent tip callout:** muted surface fill, 32 px radius, small leaf or lightbulb icon.
 - **Inputs:** 52 px tall, 20 px horizontal padding, pill or heavily rounded, card fill,
-  2 px primary focus ring.
+  2 px primary focus ring. A multiline note field is at least 200 px tall, 16 px radius,
+  with a 1 px `textAlt` border like the note card.
 - **Checkbox and radio:** 24 px circles. Checked state is a primary fill with a white
   check.
 - **Player controls:** restart, a large central play/pause and skip, styled like a clean

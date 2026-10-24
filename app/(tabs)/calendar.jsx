@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { useCallback, useState } from 'react'
 import { Calendar, LocaleConfig } from 'react-native-calendars'
 import { format, parseISO } from 'date-fns'
 import { cs } from 'date-fns/locale'
-import { useFocusEffect } from 'expo-router'
+import { Link, useFocusEffect } from 'expo-router'
 
 //themed components
 import ThemedView from '../../components/ThemedView'
@@ -11,9 +11,11 @@ import Spacer from '../../components/Spacer'
 import { useColors } from '../../constants/theme'
 import ThemedText from '../../components/ThemedText'
 import ThemedCard from '../../components/ThemedCard'
+import ThemedButton from '../../components/ThemedButton'
+import NoteCard from '../../components/NoteCard'
 
 //storage
-import { getExercisedDates } from '../../storage/records'
+import { getExercisedDates, getNotes } from '../../storage/records'
 
 LocaleConfig.locales.cs = {
   monthNames: [
@@ -63,14 +65,17 @@ const CalendarScreen = () => {
   const [selectedDate, setSelectedDate] = useState('')
 
   const [exercisedDates, setExercisedDates] = useState([])
+  const [notes, setNotes] = useState([])
 
   useFocusEffect(
     useCallback(() => {
-      const loadDates = async () => {
+      const loadRecords = async () => {
         const dates = await getExercisedDates()
         setExercisedDates(dates)
+        const savedNotes = await getNotes()
+        setNotes(savedNotes)
       }
-      loadDates()
+      loadRecords()
     }, []),
   )
 
@@ -80,6 +85,7 @@ const CalendarScreen = () => {
       : ''
 
   const isExercised = exercisedDates.includes(selectedDate)
+  const selectedNote = notes.find((note) => note.date === selectedDate)
 
   const markedDates = {}
   exercisedDates.forEach((date) => {
@@ -92,34 +98,58 @@ const CalendarScreen = () => {
   markedDates[selectedDate] = { selected: true }
 
   return (
-    <ThemedView style={styles.container}>
-      <Spacer height={24} />
-      <Calendar
-        firstDay={1}
-        markingType="custom"
-        onDayPress={(day) => setSelectedDate(day.dateString)}
-        markedDates={markedDates}
-        theme={{
-          calendarBackground: palette.card,
-          monthTextColor: palette.text,
-          textSectionTitleColor: palette.textAlt,
-          dayTextColor: palette.text,
-          todayTextColor: palette.primary,
-          arrowColor: palette.primary,
-          selectedDayBackgroundColor: palette.primary,
-          selectedDayTextColor: palette.onPrimary,
-        }}
-      />
-      <Spacer height={24} />
-      {selectedDate !== '' && (
-        <ThemedCard>
-          <ThemedText title={true}>{selectedLabel}</ThemedText>
-          {isExercised && <ThemedText>Odcvičeno</ThemedText>}
-          {!isExercised && (
-            <ThemedText>Pro tento den zatím nemáte žádný záznam.</ThemedText>
-          )}
-        </ThemedCard>
-      )}
+    <ThemedView style={styles.screen}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Spacer height={24} />
+        <Calendar
+          firstDay={1}
+          markingType="custom"
+          onDayPress={(day) => setSelectedDate(day.dateString)}
+          markedDates={markedDates}
+          theme={{
+            calendarBackground: palette.card,
+            monthTextColor: palette.text,
+            textSectionTitleColor: palette.textAlt,
+            dayTextColor: palette.text,
+            todayTextColor: palette.primary,
+            arrowColor: palette.primary,
+            selectedDayBackgroundColor: palette.primary,
+            selectedDayTextColor: palette.onPrimary,
+          }}
+        />
+        <Spacer height={24} />
+        {selectedDate !== '' && (
+          <>
+            {/* Card 1: the date and whether there was an exercise.
+                Exercised days get the same soft green as their circle in the calendar. */}
+            <ThemedCard
+              style={isExercised && { backgroundColor: palette.mutedSurface }}
+            >
+              <ThemedText style={styles.dayDate}>{selectedLabel}</ThemedText>
+              <ThemedText style={styles.dayStatus} title={true}>
+                {isExercised ? 'Odcvičeno' : 'Zatím bez záznamu'}
+              </ThemedText>
+            </ThemedCard>
+            <Spacer height={12} />
+
+            {/* Card 2: the note, if there is one */}
+            {selectedNote && (
+              <NoteCard
+                note={selectedNote}
+                title="Poznámka"
+                showFullText={true}
+              />
+            )}
+
+            {/* A note belongs to an exercise, so it can be added only on exercised days */}
+            {isExercised && !selectedNote && (
+              <Link href={`/notes/${selectedDate}`} asChild>
+                <ThemedButton title="Přidat poznámku" icon="add" />
+              </Link>
+            )}
+          </>
+        )}
+      </ScrollView>
     </ThemedView>
   )
 }
@@ -127,9 +157,19 @@ const CalendarScreen = () => {
 export default CalendarScreen
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
+  },
+  container: {
     paddingHorizontal: 20,
+    paddingBottom: 24,
+  },
+  dayDate: {
+    fontSize: 15,
+  },
+  dayStatus: {
+    fontFamily: 'NunitoSans_700Bold',
+    fontSize: 19,
   },
   title: {
     fontFamily: 'NunitoSans_700Bold',

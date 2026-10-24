@@ -46,11 +46,7 @@ const RootLayout = () => {
             // Heart in the left corner of the header
             headerLeft: () => (
               <View style={styles.avatar}>
-                <Ionicons
-                  name="heart-outline"
-                  size={20}
-                  color={palette.text}
-                />
+                <Ionicons name="heart-outline" size={20} color={palette.text} />
               </View>
             ),
             // Icon in the right corner opens the settings
@@ -67,6 +63,8 @@ const RootLayout = () => {
             ),
           }}
         />
+        <Stack.Screen name="notes/[date]" options={{ title: 'Poznámka' }} />
+
         <Stack.Screen name="workout" options={{ title: 'Cvičení' }} />
         <Stack.Screen name="done" options={{ title: 'Hotovo' }} />
         <Stack.Screen

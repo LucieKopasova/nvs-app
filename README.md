@@ -61,16 +61,22 @@ app/            screens (each file is one route)
   index.jsx     welcome screen
   (tabs)/       screens with the bottom tab bar (Domů, Kalendář, Poznámky, Průvodce, Profil)
   library/      exercise library and exercise detail screens
+  notes/
+    [date].jsx  write, edit or delete the note for one day (/notes/2026-10-24)
   settings.jsx  settings, opened from the three-dots icon in the header
 assets/         icons, splash screen and images
-components/     shared themed components (ThemedText, ThemedView, …)
+components/     shared components (ThemedText, ThemedView, ThemedCard, NoteCard, …)
 constants/
   theme.js      design tokens: colors, fonts, spacing, radius
 docs/           product and design documentation
 scripts/        helper scripts (Android emulator)
 storage/
-  records.js    reads and writes user records on the device (AsyncStorage)
+  records.js    reads and writes user records on the device (AsyncStorage): exercised
+                days and notes (one note per day)
 ```
+
+To format the code, run `npm run format` (Prettier, settings in `.prettierrc`), or press
+Shift+Alt+F in VS Code.
 
 ## Documentation
 
