@@ -158,7 +158,7 @@ one of 12 series. There is no big progress dashboard.
   (for example „Říjen 2026").
 - Today is highlighted subtly. Days with recorded exercise get a soft green marker.
   Days with a note get a tiny pencil icon.
-- **Selected-date panel**, for example „12. října": „Cvičení zaznamenáno" and the note
+- **Selected-date panel**, for example „12. října": „Odcvičeno" and the note
   text with an edit action. Empty state: „Pro tento den zatím nemáš žádný záznam."
 - „+ Přidat poznámku" button.
 - „Zaznamenat cvičení" button (secondary style) that opens the manual record. This is the
@@ -240,8 +240,10 @@ links, without the tab bar. More items may be added later.
 
 ## 6. Data model (derived)
 
-In phase 1 everything is stored locally on the device. The storage library is not chosen
-yet.
+In phase 1 everything is stored locally on the device with AsyncStorage, behind the
+`storage/records.js` module. So far it saves only the list of days with exercise
+(`'yyyy-MM-dd'` strings), written when the „Hotovo" screen opens. The full exercise record
+below (series, day, exercise, status) replaces it when the manual record is built.
 
 - **Settings:** reminder enabled and reminder time.
 - **Account (family)** (phase 2): e-mail and password. Settings and records sync to it.

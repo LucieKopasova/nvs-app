@@ -1,5 +1,6 @@
 import { StyleSheet, Pressable } from 'react-native'
-import React from 'react'
+import { useEffect } from 'react'
+import { format } from 'date-fns'
 import { Link } from 'expo-router'
 import { useColors, fonts, spacing, radius } from '../constants/theme'
 
@@ -7,8 +8,17 @@ import { useColors, fonts, spacing, radius } from '../constants/theme'
 import ThemedView from '../components/ThemedView'
 import ThemedText from '../components/ThemedText'
 
+//storage
+import { addExercisedDate } from '../storage/records'
+
 const DoneScreen = () => {
   const styles = getStyles(useColors())
+
+  useEffect(() => {
+  addExercisedDate(format(new Date(), 'yyyy-MM-dd'))
+}, [])
+
+
   return (
     <ThemedView style={styles.container}>
       <ThemedText style={styles.title} title={true}>

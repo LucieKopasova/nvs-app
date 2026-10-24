@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Calendar, LocaleConfig } from 'react-native-calendars'
+import { format, parseISO } from 'date-fns'
+import { cs } from 'date-fns/locale'
+import { useFocusEffect } from 'expo-router'
 
 //themed components
 import ThemedView from '../../components/ThemedView'
@@ -10,7 +13,7 @@ import ThemedText from '../../components/ThemedText'
 import ThemedCard from '../../components/ThemedCard'
 
 //storage
-import { exercisedDates } from '../../storage/records'
+import { getExercisedDates } from '../../storage/records'
 
 LocaleConfig.locales.cs = {
   monthNames: [
@@ -54,28 +57,28 @@ LocaleConfig.locales.cs = {
   today: 'Dnes',
 }
 LocaleConfig.defaultLocale = 'cs'
-const monthNamesGenitive = [
-  'ledna',
-  'února',
-  'března',
-  'dubna',
-  'května',
-  'června',
-  'července',
-  'srpna',
-  'září',
-  'října',
-  'listopadu',
-  'prosince',
-]
 
 const CalendarScreen = () => {
   const palette = useColors()
   const [selectedDate, setSelectedDate] = useState('')
-  const parts = selectedDate.split('-')
-  const day = Number(parts[2])
-  const month = monthNamesGenitive[Number(parts[1]) - 1]
-  const selectedLabel = `${day}. ${month}`
+
+  const [exercisedDates, setExercisedDates] = useState([])
+
+  useFocusEffect(
+    useCallback(() => {
+      const loadDates = async () => {
+        const dates = await getExercisedDates()
+        setExercisedDates(dates)
+      }
+      loadDates()
+    }, []),
+  )
+
+  const selectedLabel =
+    selectedDate !== ''
+      ? format(parseISO(selectedDate), 'd. MMMM', { locale: cs })
+      : ''
+
   const isExercised = exercisedDates.includes(selectedDate)
 
   const markedDates = {}

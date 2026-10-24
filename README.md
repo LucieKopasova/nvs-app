@@ -46,6 +46,12 @@ To add a dependency, use `npx expo install <package>` so the version matches the
 - [Expo Router](https://docs.expo.dev/router/introduction/) (file-based routing)
 - Plain JavaScript (JSX), no TypeScript
 - Font: Nunito Sans
+- [react-native-calendars](https://github.com/wix/react-native-calendars): the month grid
+  in „Kalendář"
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/): saves user
+  records on the device
+- [date-fns](https://date-fns.org/): formats dates (`'yyyy-MM-dd'`, „24. října" with the
+  `cs` locale)
 
 ## Project structure
 
@@ -62,6 +68,8 @@ constants/
   theme.js      design tokens: colors, fonts, spacing, radius
 docs/           product and design documentation
 scripts/        helper scripts (Android emulator)
+storage/
+  records.js    reads and writes user records on the device (AsyncStorage)
 ```
 
 ## Documentation

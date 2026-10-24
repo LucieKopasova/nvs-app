@@ -156,26 +156,31 @@ The user set these while building the first screens. Follow them for new screens
 6. **Hand back:** summarize in Czech what was built, what is mocked and what is still
    open. Don't commit unless asked.
 
-## Calendar: agreed approach (not built yet)
+## Calendar: in progress
 
-The user only wanted a proposal so far, so don't build it until asked. When the
-„Kalendář" tab (`app/(tabs)/calendar.jsx`) gets built:
+The user is building „Kalendář" (`app/(tabs)/calendar.jsx`) herself, lesson by lesson.
+Explain and review; don't write the screen code for her.
 
-- **Library:** `react-native-calendars` (Wix). It is plain JS, so it works in Expo Go, and
-  it needs no extra dependency. We chose it over `@marceloterreiro/flash-calendar`, which
-  needs `@shopify/flash-list` and is built for infinite scrolling, which we don't need
-  (one month plus ‹ › arrows).
-- **Czech and Monday first:** `LocaleConfig` with Czech month and day names
-  (Po Út St Čt Pá So Ne), and `firstDay={1}`.
-- **Colors:** pass values from `useColors()` into `theme`; no hex values.
-- **Custom days:** draw each day with `dayComponent` (`date.dateString` such as
-  `"2026-10-12"`, `state` is `"today"` or `"disabled"`). It shows a soft green circle for
-  recorded exercise and a small Ionicons `pencil` icon (positioned absolutely) for a note,
-  as the user wants.
-- **Planned steps:** (1) a small storage module for records per day and per exercise
-  (`@react-native-async-storage/async-storage`), (2) the grid, (3) the selected-day panel
-  in a `ThemedCard`, (4) `app/record.jsx` „Zaznamenat cvičení", (5) export and
-  `mobile-ux-reviewer`.
+**Built:**
+
+- **Library:** `react-native-calendars` (Wix), plain JS, works in Expo Go. Chosen over
+  `@marceloterreiro/flash-calendar`, which needs `@shopify/flash-list` and is built for
+  infinite scrolling we don't need (one month plus ‹ › arrows).
+- **Czech and Monday first:** `LocaleConfig` with hand-written Czech month and day names
+  (kept by hand on purpose: easier to read than generating them), and `firstDay={1}`.
+- **Colors:** values from `useColors()` in `theme` (selected day `primary` with
+  `onPrimary` text); no hex values.
+- **Exercised days:** `markingType="custom"` with `customStyles.container`
+  `backgroundColor: palette.mutedSurface` (soft green). This replaced the planned
+  `dayComponent`; switch to `dayComponent` only when the note pencil icon needs it.
+- **Selected-day panel:** a `ThemedCard` with the date via `date-fns`
+  (`format(parseISO(selectedDate), 'd. MMMM', { locale: cs })`) and „Odcvičeno" or the
+  empty state.
+- **Data:** `storage/records.js` (`getExercisedDates`, `addExercisedDate`, AsyncStorage);
+  `done.jsx` saves today on open; the calendar loads with `useFocusEffect`.
+
+**Still to do:** the note pencil icon, „+ Přidat poznámku", `app/record.jsx`
+„Zaznamenat cvičení" (with records per exercise), export and `mobile-ux-reviewer`.
 
 ## Keeping the docs alive
 
